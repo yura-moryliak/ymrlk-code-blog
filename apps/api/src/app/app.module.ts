@@ -18,6 +18,8 @@ import { UsersModule } from './users/users.module';
       ttl: 60,
       limit: 10,
     }),
+
+    // Custom
     AuthModule,
     UsersModule,
   ],

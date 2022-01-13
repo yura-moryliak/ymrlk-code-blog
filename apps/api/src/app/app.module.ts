@@ -9,6 +9,7 @@ import { APP_GUARD } from '@nestjs/core';
 import { AppController } from './app.controller';
 import { AuthModule } from './auth/auth.module';
 import { UsersModule } from './users/users.module';
+import { JwtAuthGuard } from './auth/guards/jwt-auth.guard';
 
 @Module({
   imports: [
@@ -29,6 +30,10 @@ import { UsersModule } from './users/users.module';
       provide: APP_GUARD,
       useClass: ThrottlerGuard,
     },
+    {
+      provide: APP_GUARD,
+      useClass: JwtAuthGuard
+    }
   ], // MUST PROVIDE SERVICES AT THE LEVEL OF MODULE
 })
 export class AppModule {}

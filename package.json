@@ -36,7 +36,6 @@
     "@nestjs/throttler": "^2.0.0",
     "@nrwl/angular": "13.4.3",
     "cookie-parser": "^1.4.6",
-    "csurf": "^1.11.0",
     "helmet": "^5.0.1",
     "mongoose": "^6.1.6",
     "passport": "^0.5.2",

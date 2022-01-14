@@ -7,9 +7,8 @@ import { ThrottlerGuard, ThrottlerModule } from '@nestjs/throttler';
 import { APP_GUARD } from '@nestjs/core';
 
 import { AppController } from './app.controller';
-import { AuthModule } from './auth/auth.module';
-import { UsersModule } from './users/users.module';
-import { JwtAuthGuard } from './auth/guards/jwt-auth.guard';
+import { AuthModule } from './repositories/auth/auth.module';
+import { UsersModule } from './repositories/users/users.module';
 
 @Module({
   imports: [
@@ -19,8 +18,6 @@ import { JwtAuthGuard } from './auth/guards/jwt-auth.guard';
       ttl: 60,
       limit: 10,
     }),
-
-    // Custom
     AuthModule,
     UsersModule,
   ],
@@ -30,10 +27,6 @@ import { JwtAuthGuard } from './auth/guards/jwt-auth.guard';
       provide: APP_GUARD,
       useClass: ThrottlerGuard,
     },
-    {
-      provide: APP_GUARD,
-      useClass: JwtAuthGuard
-    }
   ], // MUST PROVIDE SERVICES AT THE LEVEL OF MODULE
 })
 export class AppModule {}

@@ -1,18 +1,17 @@
 import { Controller, Post, UseGuards, Request, Get } from '@nestjs/common';
 
-import { LocalAuthGuard } from './auth/guards/local-auth.guard';
-import { AuthService } from './auth/services/auth.service';
-import { JwtAuthGuard } from './auth/guards/jwt-auth.guard';
-import { SkipAuth } from './decorators/skip-auth.decorator';
+import { LocalAuthGuard } from './repositories/auth/guards/local-auth.guard';
+import { AuthService } from './repositories/auth/services/auth.service';
+import { JwtAuthGuard } from './repositories/auth/guards/jwt-auth.guard';
 
 @Controller()
 export class AppController {
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService) {}
 
   @UseGuards(LocalAuthGuard)
   @Post('auth/login')
-  async login(@Request() req: any) {
+  async login(@Request() req) {
     return this.authService.login(req.user);
   }
 
@@ -20,12 +19,6 @@ export class AppController {
   @Get('profile')
   getProfile(@Request() req) {
     return req.user;
-  }
-
-  @SkipAuth()
-  @Get('all')
-  findAll() {
-    return [];
   }
 
 }

@@ -8,6 +8,7 @@ import { ThrottlerGuard, ThrottlerModule } from '@nestjs/throttler';
 import { AppController } from './app.controller';
 import { AuthModule } from './repositories/auth/auth.module';
 import { UsersModule } from './repositories/users/users.module';
+
 import { configuration, ConfigurationInterface } from './configs/configuration';
 
 @Module({
@@ -15,10 +16,12 @@ import { configuration, ConfigurationInterface } from './configs/configuration';
     MongooseModule.forRootAsync({
       imports: [ConfigModule],
       useFactory: async (configService: ConfigService) => ({
-        uri: configService.get<ConfigurationInterface>(configuration.YMRLK_MONGODB_CONNECTION_STRING),
-        dbName: configService.get<ConfigurationInterface>(configuration.YMRLK_MONGODB_DATABASE),
-        retryAttempts: configService.get<ConfigurationInterface>(configuration.YMRLK_MONGODB_RETRY_ATTEMPTS),
-        retryDelay: configService.get<ConfigurationInterface>(configuration.YMRLK_MONGODB_RETRY_DELAY)
+        uri:            configService.get<ConfigurationInterface>(configuration.YMRLK_MONGODB_CONNECTION_STRING),
+        dbName:         configService.get<ConfigurationInterface>(configuration.YMRLK_MONGODB_DATABASE_NAME),
+        retryAttempts:  configService.get<ConfigurationInterface>(configuration.YMRLK_MONGODB_RETRY_ATTEMPTS),
+        retryDelay:     configService.get<ConfigurationInterface>(configuration.YMRLK_MONGODB_RETRY_DELAY),
+        user:           configService.get<ConfigurationInterface>(configuration.YMRLK_MONGODB_USER),
+        pass:           configService.get<ConfigurationInterface>(configuration.YMRLK_MONGODB_PASSWORD)
       }),
       inject: [ConfigService]
     }),
@@ -30,8 +33,8 @@ import { configuration, ConfigurationInterface } from './configs/configuration';
     ThrottlerModule.forRootAsync({
       imports: [ConfigModule],
       useFactory: async (configService: ConfigService) => ({
-        ttl: configService.get(configuration.YMRLK_THROTTLE_TTL),
-        limit: configService.get(configuration.YMRLK_THROTTLE_LIMIT)
+        ttl:    configService.get(configuration.YMRLK_THROTTLE_TTL),
+        limit:  configService.get(configuration.YMRLK_THROTTLE_LIMIT)
       }),
       inject: [ConfigService]
     }),

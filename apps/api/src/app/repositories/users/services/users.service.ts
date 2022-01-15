@@ -1,12 +1,10 @@
 import { Injectable } from '@nestjs/common';
-
-// Ideally should be interfaced
-export type User = any;
+import { UserInterface } from '../interfaces/user.interface';
 
 @Injectable()
 export class UsersService {
 
-  private readonly users = [
+  private readonly users: UserInterface[] = [
     {
       userId: 1,
       username: 'john',
@@ -19,7 +17,7 @@ export class UsersService {
     },
   ];
 
-  async findOne(username: string): Promise<User | undefined> {
+  async findOne(username: string): Promise<UserInterface | undefined> {
     return this.users.find(user => user.username === username);
   }
 

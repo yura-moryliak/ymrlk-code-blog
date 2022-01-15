@@ -12,20 +12,20 @@ export class UsersService {
   private readonly users: UserInterface[] = [
     {
       userId: 1,
-      username: 'john',
-      password: 'changeme',
+      email: 'moryliak.y@gmail.com',
+      password: '12345',
     },
     {
       userId: 2,
-      username: 'maria',
+      email: 'maria',
       password: 'guess',
     },
   ];
 
   constructor(@InjectModel(User.name) private userModel: Model<UserDocument>) { }
 
-  async findOne(username: string): Promise<any | undefined> {
-    return this.users.find(user => user.username === username);
+  async findOne(email: string): Promise<any | undefined> {
+    return this.users.find(user => user.email === email);
   }
 
 }

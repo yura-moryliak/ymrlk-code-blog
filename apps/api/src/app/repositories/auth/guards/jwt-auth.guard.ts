@@ -2,7 +2,7 @@ import { ExecutionContext, Injectable } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { Reflector } from '@nestjs/core';
 
-import { SKIP_AUTH_CHECK } from '../../../decorators/is-public.decorator';
+import { SKIP_JWT_CHECK } from '../../../decorators/skip-jwt-check.decorator';
 
 @Injectable()
 export class JwtAuthGuard extends AuthGuard('jwt') {
@@ -12,12 +12,12 @@ export class JwtAuthGuard extends AuthGuard('jwt') {
   }
 
   canActivate(context: ExecutionContext) {
-    const isPublic = this.reflector.getAllAndOverride<boolean>(SKIP_AUTH_CHECK, [
+    const skipAuth = this.reflector.getAllAndOverride<boolean>(SKIP_JWT_CHECK, [
       context.getHandler(),
       context.getClass()
     ]);
 
-    if (isPublic) {
+    if (skipAuth) {
       return true;
     }
 

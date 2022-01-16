@@ -30,7 +30,7 @@ export class User {
   }))
   accountUrl: Record<string, any>;
 
-  @Prop({ required: true })
+  @Prop({ required: true, unique: true })
   email: string;
 
   @Prop({ required: true })
@@ -45,8 +45,14 @@ export class User {
   @Prop({ type: [String], required: true })
   roles: string[];
 
-  @Prop({ type: String, required: true })
+  @Prop({ type: String, required: true, unique: true })
   uuid: string;
+
+  @Prop()
+  refreshToken: string;
+
+  @Prop()
+  refreshTokenExpiresIn: string;
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);

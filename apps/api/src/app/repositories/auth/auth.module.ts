@@ -8,6 +8,7 @@ import { UsersModule } from '../users/users.module';
 import { AuthService } from './services/auth.service';
 import { JwtStrategy } from './strategies/jwt.strategy';
 import { LocalStrategy } from './strategies/local.strategy';
+import { JwtRefreshTokenStrategy } from './strategies/jwt-refresh-token.strategy';
 
 import { AuthController } from './controllers/auth.controller';
 import { configuration } from '../../configs/configuration';
@@ -31,7 +32,8 @@ import { configuration } from '../../configs/configuration';
   providers: [
     AuthService,
     LocalStrategy,
-    JwtStrategy
+    JwtStrategy,
+    JwtRefreshTokenStrategy
   ],
   exports: [AuthService]
 })

@@ -53,6 +53,13 @@ export class UsersService {
     return false;
   }
 
+  async saveOrUpdateRefreshToken(uuid: string, refreshToken: string, refreshTokenExpiresIn: Date): Promise<void> {
+    await this.userModel.findOneAndUpdate({ uuid }, {
+      refreshToken,
+      refreshTokenExpiresIn
+    });
+  }
+
   private async getCreatedDocument(model): Promise<any> {
 
     const modelCopy = {

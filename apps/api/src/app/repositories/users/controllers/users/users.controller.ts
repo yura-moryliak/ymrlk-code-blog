@@ -12,8 +12,6 @@ export class UsersController {
   async getByEmail(@Param() email: { email: string }): Promise<any> {
     const foundUser = await this.usersService.findByEmail(email.email);
 
-    console.log(foundUser);
-
     if (!foundUser) {
       throw new HttpException({
         status: HttpStatus.BAD_REQUEST,

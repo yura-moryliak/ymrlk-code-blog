@@ -52,7 +52,7 @@ import { routes } from './routes';
     },
     {
       provide: APP_GUARD,
-      useClass: JwtAuthGuard,
+      useClass: JwtAuthGuard
     }
   ]
 })

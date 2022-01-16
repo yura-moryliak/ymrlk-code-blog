@@ -9,6 +9,8 @@ export interface ConfigurationInterface {
   YMRLK_THROTTLE_LIMIT: string;
   YMRLK_JWT_SECRET: string;
   YMRLK_JWT_EXPIRES_IN: string;
+  YMRLK_REFRESH_TOKEN_EXPIRATION_DAYS: string;
+  YMRLK_REFRESH_TOKEN_SIZE: string;
 }
 
 export const configuration: ConfigurationInterface = {
@@ -21,5 +23,7 @@ export const configuration: ConfigurationInterface = {
   YMRLK_THROTTLE_TTL:                   'YMRLK_THROTTLE_TTL',
   YMRLK_THROTTLE_LIMIT:                 'YMRLK_THROTTLE_LIMIT',
   YMRLK_JWT_SECRET:                     'YMRLK_JWT_SECRET',
-  YMRLK_JWT_EXPIRES_IN:                 'YMRLK_JWT_EXPIRES_IN'
+  YMRLK_JWT_EXPIRES_IN:                 'YMRLK_JWT_EXPIRES_IN',
+  YMRLK_REFRESH_TOKEN_SIZE:             'YMRLK_REFRESH_TOKEN_SIZE',
+  YMRLK_REFRESH_TOKEN_EXPIRATION_DAYS:  'YMRLK_REFRESH_TOKEN_EXPIRATION_DAYS'
 };

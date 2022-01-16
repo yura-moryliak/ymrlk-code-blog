@@ -3,6 +3,8 @@ import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 
+import { UserInterface } from '@ymrlk-code-blog/data';
+
 import { hash } from 'bcrypt';
 import { v1 as uuidv1 } from 'uuid';
 
@@ -23,7 +25,7 @@ export class UsersService {
     return foundUserDocument;
   }
 
-  async findByEmail(email: string): Promise<any> {
+  async findByEmail(email: string): Promise<UserDocument> {
     const foundUserDocument = await this.userModel.findOne({ email }).select('-password').exec();
 
     if (!foundUserDocument) {
@@ -33,7 +35,7 @@ export class UsersService {
     return foundUserDocument;
   }
 
-  async findByUUID(uuid: string): Promise<any> {
+  async findByUUID(uuid: string): Promise<UserDocument> {
     const foundUserDocument = await this.userModel.findOne({ uuid }).select('-password').exec();
 
     if (!foundUserDocument) {
@@ -43,7 +45,7 @@ export class UsersService {
     return foundUserDocument;
   }
 
-  async createOne(model: any): Promise<any> {
+  async createOne(model: UserInterface): Promise<any> {
     const userExist = await this.findByEmail(model.email);
 
     if (!userExist) {

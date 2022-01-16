@@ -24,8 +24,11 @@ export class User {
   }))
   avatar: Record<string, any>;
 
-  @Prop()
-  accountUrl: string;
+  @Prop(raw({
+    url: { type: String },
+    prefix: { type: String }
+  }))
+  accountUrl: Record<string, any>;
 
   @Prop({ required: true })
   email: string;
@@ -39,8 +42,11 @@ export class User {
   }))
   from: Record<string, any>;
 
-  @Prop([String])
+  @Prop({ type: [String], required: true })
   roles: string[];
+
+  @Prop({ type: String, required: true })
+  uuid: string;
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);

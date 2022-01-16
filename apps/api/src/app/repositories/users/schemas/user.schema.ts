@@ -6,16 +6,16 @@ export type UserDocument = User & Document;
 @Schema()
 export class User {
 
-  @Prop()
+  @Prop({ type: String, maxlength: 50 })
   userName: string;
 
-  @Prop({ required: true })
+  @Prop({ type: String, maxlength: 50 })
   firstName: string;
 
-  @Prop({ required: true })
+  @Prop({ type: String, maxlength: 50 })
   lastName: string;
 
-  @Prop()
+  @Prop({ type: String, maxlength: 250 })
   shortBio: string;
 
   @Prop(raw({
@@ -30,10 +30,10 @@ export class User {
   }))
   accountUrl: Record<string, any>;
 
-  @Prop({ required: true, unique: true })
+  @Prop({ type: String, required: true, unique: true })
   email: string;
 
-  @Prop({ required: true })
+  @Prop({ type: String, required: true })
   password: string;
 
   @Prop(raw({
@@ -48,10 +48,10 @@ export class User {
   @Prop({ type: String, required: true, unique: true })
   uuid: string;
 
-  @Prop()
+  @Prop({ type: String })
   refreshToken: string;
 
-  @Prop()
+  @Prop({ type: Date })
   refreshTokenExpiresIn: string;
 }
 

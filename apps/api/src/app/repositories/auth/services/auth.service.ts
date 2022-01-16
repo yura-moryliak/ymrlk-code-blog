@@ -7,6 +7,10 @@ import { compare } from 'bcrypt';
 import { generate } from 'rand-token'
 
 import { UsersService } from '../../users/services/users.service';
+import { UserDocument } from '../../users/schemas/user.schema';
+import { AuthTokenRequestPayloadInterface } from '../interfaces/auth-token-request-payload.interface';
+import { AuthTokensInterface } from '../interfaces/auth-tokens.interface';
+
 import { configuration } from '../../../configs/configuration';
 
 @Injectable()
@@ -18,35 +22,39 @@ export class AuthService {
     private readonly configService: ConfigService
   ) { }
 
-  async validateUser(email: string, password: string): Promise<any> {
-    const user = await this.usersService.findOne(email);
+  async validateUser(email: string, password: string): Promise<UserDocument> {
+    const userDocument: UserDocument = await this.usersService.findOne(email);
 
-    if (!user) {
+    if (!userDocument) {
       return null;
     }
 
-    const arePasswordsSame = await compare(password, user.password);
+    const arePasswordsSame = await compare(password, userDocument.password);
 
-    if (user && arePasswordsSame) {
-      const { password, ...result } = user;
-      return result;
+    if (userDocument && arePasswordsSame) {
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      const { password, ...result } = userDocument;
+      return result as UserDocument;
     }
   }
 
-  async login(user: any): Promise<any> {
-    const payload = { userName: user.userName, sub: user.uuid };
+  async login(loginPayload: AuthTokenRequestPayloadInterface): Promise<AuthTokensInterface> {
+    const { userName, sub } = loginPayload.user;
+    const payload = { userName, sub };
 
     return {
       accessToken: this.jwtService.sign(payload),
-      refreshToken: await this.generateRefreshToken(user.uuid)
+      refreshToken: await this.generateRefreshToken(sub)
     };
   }
 
-  private async generateRefreshToken(userUUID: string): Promise<any> {
+  private async generateRefreshToken(userUUID: string): Promise<string> {
     const refreshToken = generate(this.configService.get(configuration.YMRLK_REFRESH_TOKEN_SIZE));
     const expirationDate = new Date();
 
-    expirationDate.setDate(expirationDate.getDate() + +this.configService.get(configuration.YMRLK_REFRESH_TOKEN_EXPIRATION_DAYS));
+    expirationDate.setDate(
+      expirationDate.getDate() + +this.configService.get(configuration.YMRLK_REFRESH_TOKEN_EXPIRATION_DAYS)
+    );
 
     await this.usersService.saveOrUpdateRefreshToken(userUUID, refreshToken, expirationDate);
 

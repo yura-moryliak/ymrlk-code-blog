@@ -7,7 +7,7 @@ import { SKIP_JWT_CHECK } from '../../../decorators/skip-jwt-check.decorator';
 @Injectable()
 export class JwtAuthGuard extends AuthGuard('jwt') {
 
-  constructor(private reflector: Reflector) {
+  constructor(private readonly reflector: Reflector) {
     super();
   }
 

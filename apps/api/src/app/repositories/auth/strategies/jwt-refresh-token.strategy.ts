@@ -5,7 +5,11 @@ import { ConfigService } from '@nestjs/config';
 import { PassportStrategy } from '@nestjs/passport';
 import { ExtractJwt, Strategy } from 'passport-jwt';
 
+import { UserInterface } from '@ymrlk-code-blog/data';
+
 import { UsersService } from '../../users/services/users.service';
+import { AuthValidationPayloadInterface } from '../interfaces/auth-validation-payload.interface';
+import { UserDocument } from '../../users/schemas/user.schema';
 import { configuration } from '../../../configs/configuration';
 
 @Injectable()
@@ -20,23 +24,22 @@ export class JwtRefreshTokenStrategy extends PassportStrategy(Strategy, 'jwt-ref
     });
   }
 
-  async validate(request: Request, payload: any): Promise<any> {
+  async validate(request: Request, payload: AuthValidationPayloadInterface): Promise<AuthValidationPayloadInterface> {
+    const userDocument: UserDocument = await this.usersService.findByUUID(payload.sub);
 
-    const user = await this.usersService.findByUUID(payload.sub);
-
-    if (!user) {
+    if (!userDocument) {
       throw new UnauthorizedException('No refresh token found');
     }
 
-    if ((request.body as any).refreshToken != (await user).refreshToken) {
+    if ((request.body as UserInterface).refreshToken != (await userDocument).refreshToken) {
       throw new UnauthorizedException('Refresh token does not matched');
     }
 
-    if (new Date() > new Date((await user).refreshTokenExpiresIn)) {
+    if (new Date() > new Date((await userDocument).refreshTokenExpiresIn)) {
       throw new UnauthorizedException('Refresh token expired');
     }
 
-    return { sub: payload.sub, userName: user.userName };
+    return { sub: payload.sub, userName: userDocument.userName };
   }
 
 

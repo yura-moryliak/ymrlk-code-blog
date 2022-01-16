@@ -13,7 +13,7 @@ export class UsersService {
 
   constructor(@InjectModel(User.name) private userModel: Model<UserDocument>) { }
 
-  async findOne(email: string): Promise<any> {
+  async findOne(email: string): Promise<UserDocument> {
     const foundUserDocument = await this.userModel.findOne({ email }).exec();
 
     if (!foundUserDocument) {

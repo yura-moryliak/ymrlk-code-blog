@@ -5,12 +5,13 @@ import { PassportStrategy } from '@nestjs/passport';
 import { Strategy } from 'passport-local';
 
 import { AuthService } from '../services/auth.service';
+import { UserDocument } from '../../users/schemas/user.schema';
 
 
 @Injectable()
 export class LocalStrategy extends PassportStrategy(Strategy) {
 
-  constructor(private moduleRef: ModuleRef) {
+  constructor(private readonly moduleRef: ModuleRef) {
     super({
       usernameField: 'email',
       passwordField: 'password',
@@ -18,16 +19,16 @@ export class LocalStrategy extends PassportStrategy(Strategy) {
     });
   }
 
-  async validate(request: Request, email: string, password: string) {
+  async validate(request: Request, email: string, password: string): Promise<UserDocument> {
     const contextId = ContextIdFactory.getByRequest(request);
     const authService = await this.moduleRef.resolve(AuthService, contextId);
 
-    const user = await authService.validateUser(email, password);
+    const userDocument = await authService.validateUser(email, password);
 
-    if (!user) {
+    if (!userDocument) {
       throw new UnauthorizedException();
     }
 
-    return user;
+    return userDocument;
   }
 }

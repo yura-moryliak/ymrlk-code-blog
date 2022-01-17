@@ -17,9 +17,9 @@ export class UsersController {
 
     if (!userDocument) {
       throw new HttpException({
-        status: HttpStatus.BAD_REQUEST,
-        error: 'User not found'
-      }, HttpStatus.BAD_REQUEST);
+        status: HttpStatus.NOT_FOUND,
+        error: `User with ${ email.email } email was not found`
+      }, HttpStatus.NOT_FOUND);
     }
 
     return userDocument;
@@ -31,9 +31,9 @@ export class UsersController {
 
     if (!userDocument) {
       throw new HttpException({
-        status: HttpStatus.BAD_REQUEST,
-        error: 'User not found'
-      }, HttpStatus.BAD_REQUEST);
+        status: HttpStatus.NOT_FOUND,
+        error: `User with ${ uuid.uuid } was not found`
+      }, HttpStatus.NOT_FOUND);
     }
 
     return userDocument;

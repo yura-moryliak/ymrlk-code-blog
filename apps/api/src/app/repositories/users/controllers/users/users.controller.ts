@@ -1,10 +1,11 @@
-import { Controller, Get, Param, Post, Body, HttpException, HttpStatus } from '@nestjs/common';
+import { Body, Controller, Get, HttpCode, HttpException, HttpStatus, Param, Post } from '@nestjs/common';
 
-import { UserInterface } from '@ymrlk-code-blog/data';
+import { RoleEnum, UserInterface } from '@ymrlk-code-blog/data';
 
 import { SkipJwtCheck } from '../../../../decorators/skip-jwt-check.decorator';
 import { UsersService } from '../../services/users.service';
 import { UserDocument } from '../../schemas/user.schema';
+import { Roles } from '../../../../decorators/roles.decorator';
 
 @Controller()
 export class UsersController {
@@ -39,6 +40,7 @@ export class UsersController {
     return userDocument;
   }
 
+  @HttpCode(200)
   @SkipJwtCheck()
   @Post('register')
   async createOne(@Body() model: UserInterface): Promise<UserDocument> {
@@ -52,6 +54,13 @@ export class UsersController {
         error: 'User already exist'
       }, HttpStatus.BAD_REQUEST)
     }
+  }
+
+  @HttpCode(200)
+  @Post('remove-user')
+  @Roles(RoleEnum.Admin)
+  addRole(@Body() uuid: { uuid: string }): any {
+    return uuid;
   }
 
 }

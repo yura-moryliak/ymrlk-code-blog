@@ -1,4 +1,4 @@
-import { Controller, Post, UseGuards, Request } from '@nestjs/common';
+import { Controller, Post, UseGuards, Request, HttpCode } from '@nestjs/common';
 
 import { LocalAuthGuard } from '../guards/local-auth.guard';
 import { AuthService } from '../services/auth.service';
@@ -15,6 +15,7 @@ export class AuthController {
 
   constructor(private readonly authService: AuthService) { }
 
+  @HttpCode(200)
   @SkipJwtCheck()
   @UseGuards(LocalAuthGuard)
   @Post('login')
@@ -23,6 +24,7 @@ export class AuthController {
     return this.authService.login({ user: { userName, sub: uuid } });
   }
 
+  @HttpCode(200)
   @SkipJwtCheck()
   @UseGuards(JwtRefreshAuthGuard)
   @Post('refresh')

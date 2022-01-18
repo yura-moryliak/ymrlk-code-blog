@@ -4,6 +4,9 @@ import { APP_GUARD, RouterModule } from '@nestjs/core';
 import { MongooseModule } from '@nestjs/mongoose';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { ThrottlerGuard, ThrottlerModule } from '@nestjs/throttler';
+import { ServeStaticModule } from '@nestjs/serve-static';
+
+import { join } from 'path';
 
 import { AuthModule } from './repositories/auth/auth.module';
 import { UsersModule } from './repositories/users/users.module';
@@ -58,6 +61,11 @@ import { SharedModule } from './shared/shared.module';
     AuthModule,
     UsersModule,
     SharedModule,
+
+    ServeStaticModule.forRoot({
+      rootPath: join(__dirname, '..', 'client'),
+      exclude: ['/api*']
+    })
   ],
   providers: [
     {

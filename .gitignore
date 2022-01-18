@@ -39,4 +39,5 @@ Thumbs.db
 
 .angular
 .env.development.local
+.env.development.heroku.local
 .env

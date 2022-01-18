@@ -14,7 +14,8 @@
     "client:test": "npx nx test client",
     "api:serve": "npx nx serve api",
     "api:build": "npx nx build api",
-    "api:test": "npx nx test api"
+    "api:test": "npx nx test api",
+    "heroku-postbuild": "nx build $PROJECT_NAME --prod"
   },
   "private": true,
   "dependencies": {

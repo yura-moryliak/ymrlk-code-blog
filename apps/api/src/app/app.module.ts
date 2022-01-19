@@ -33,12 +33,12 @@ import { SharedModule } from './shared/shared.module';
         retryDelay: configService.get<ConfigurationInterface>(
           configuration.YMRLK_MONGODB_RETRY_DELAY
         ),
-        // user: configService.get<ConfigurationInterface>(
-        //   configuration.YMRLK_MONGODB_USER
-        // ),
-        // pass: configService.get<ConfigurationInterface>(
-        //   configuration.YMRLK_MONGODB_PASSWORD
-        // ),
+        user: configService.get<ConfigurationInterface>(
+          configuration.YMRLK_MONGODB_USER
+        ),
+        pass: configService.get<ConfigurationInterface>(
+          configuration.YMRLK_MONGODB_PASSWORD
+        ),
       }),
       inject: [ConfigService],
     }),

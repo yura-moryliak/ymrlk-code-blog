@@ -12,10 +12,10 @@
     "start": "node dist/apps/api/main",
     "test": "nx test",
     "client:serve": "npx nx serve client",
-    "client:build": "npx nx build client",
+    "client:build": "npx nx build client --prod",
     "client:test": "npx nx test client",
     "api:serve": "npx nx serve api",
-    "api:build": "npx nx build api",
+    "api:build": "npx nx build api --prod",
     "api:test": "npx nx test api",
     "heroku-postbuild": "nx build $PROJECT_NAME --prod"
   },

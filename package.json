@@ -51,6 +51,7 @@
     "rand-token": "^1.0.1",
     "reflect-metadata": "^0.1.13",
     "rxjs": "~7.4.0",
+    "subsink": "^1.0.2",
     "tslib": "^2.0.0",
     "uuid": "^8.3.2",
     "zone.js": "~0.11.4"

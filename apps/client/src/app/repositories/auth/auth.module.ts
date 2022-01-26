@@ -5,6 +5,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { CookieService } from 'ngx-cookie-service';
 
+import { SharedProviders } from '../../shared/providers/shared-providers';
+
 import { AuthRoutingModule } from './auth-routing.module';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
@@ -22,6 +24,10 @@ import { RegisterComponent } from './components/register/register.component';
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [CookieService]
+  providers: [
+    CookieService,
+    SharedProviders.provideAuthInterceptor(),
+    SharedProviders.provideErrorHandlerInterceptor()
+  ]
 })
 export class AuthModule { }

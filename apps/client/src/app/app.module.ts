@@ -6,6 +6,8 @@ import { RouterModule } from '@angular/router';
 
 import { UiModule } from '@ymrlk-code-blog/ui';
 
+import { SharedProviders } from './shared/providers/shared-providers';
+
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 
@@ -22,9 +24,12 @@ import { AppRoutingModule } from './app-routing.module';
     RouterModule,
 
     // Custom
-    UiModule,
+    UiModule
   ],
-  providers: [],
-  bootstrap: [AppComponent],
+  providers: [
+    SharedProviders.provideAuthInterceptor(),
+    SharedProviders.provideErrorHandlerInterceptor()
+  ],
+  bootstrap: [AppComponent]
 })
 export class AppModule {}

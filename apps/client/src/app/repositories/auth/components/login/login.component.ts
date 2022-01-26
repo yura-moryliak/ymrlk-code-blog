@@ -1,6 +1,5 @@
 import { Component, OnInit, ViewEncapsulation, ChangeDetectionStrategy, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { HttpClient } from '@angular/common/http';
 
 import { SubSink } from 'subsink';
 
@@ -21,8 +20,7 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   constructor(
     private authService: AuthService,
-    private formBuilder: FormBuilder,
-    private http: HttpClient // TODO REMOVE AFTER TEST
+    private formBuilder: FormBuilder
   ) { }
 
   ngOnInit(): void {
@@ -42,10 +40,5 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.subSink.unsubscribe();
-  }
-
-  // TODO REMOVE AFTERWARDS
-  getProfile(): void {
-    this.http.get('http://localhost:3000/api/users/profile').subscribe((profile) => console.log(profile));
   }
 }

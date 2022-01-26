@@ -5,8 +5,15 @@
 export const environment = {
   production: false,
   server: {
-    domain: 'http://localhost:3000',
-    apiPrefix: 'api'
+    baseUrl: 'http://localhost:3000/api'
+  },
+  tokens: {
+    refresh: {
+      domain: 'localhost',
+      path: '/',
+      expiresIn: 2160000, // 25 days
+      httpOnly: true
+    }
   }
 };
 

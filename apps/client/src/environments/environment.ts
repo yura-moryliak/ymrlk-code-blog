@@ -4,6 +4,10 @@
 
 export const environment = {
   production: false,
+  server: {
+    domain: 'http://localhost:3000',
+    apiPrefix: 'api'
+  }
 };
 
 /*

@@ -5,15 +5,15 @@ import { RouterModule } from '@angular/router';
   imports: [RouterModule.forRoot([
     {
       path: '',
-      loadChildren: () => import('./feed/feed.module').then((m) => m.FeedModule)
+      loadChildren: () => import('./repositories/feed/feed.module').then((m) => m.FeedModule)
     },
     {
       path: 'auth',
-      loadChildren: () => import('./auth/auth.module').then((m) => m.AuthModule)
+      loadChildren: () => import('./repositories/auth/auth.module').then((m) => m.AuthModule)
     },
     {
       path: 'user',
-      loadChildren: () => import('./user/user.module').then((m) => m.UserModule)
+      loadChildren: () => import('./repositories/user/user.module').then((m) => m.UserModule)
     },
     {
       path: '**',

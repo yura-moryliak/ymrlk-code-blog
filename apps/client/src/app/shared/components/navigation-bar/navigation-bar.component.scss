@@ -1,3 +1,5 @@
+@import "../../../../assets/custom-styles/variables";
+
 .ymrlk-navigation-bar-container {
   display: flex;
   width: 100%;
@@ -13,7 +15,7 @@
     user-select: none;
 
     h1 {
-      color: #FF0051;
+      color: $main-color;
       position: relative;
       cursor: pointer;
       font-size: 18px;
@@ -37,14 +39,13 @@
       align-items: center;
 
       a {
-         color: #3d3d3d;
-        // color: white;
+        color: $primary-text-color;
         opacity: .69;
         font-size: 14px;
         font-weight: 700;
         text-transform: none;
         text-decoration: none;
-        transition: 0.3s ease;
+        transition: $transition-time ease;
 
         &:hover {
           opacity: 0.7;
@@ -63,12 +64,11 @@
             max-width: 50px;
             min-width: 50px;
             border-radius: 50%;
-            border: 2px solid #FF0051;
+            border: 2px solid $main-color;
           }
 
           span {
-            color: #3d3d3d;
-            // color: white;
+            color: $primary-text-color;
             opacity: 0.69;
             margin-left: 10px;
           }

@@ -1,8 +1,11 @@
+@import "../../../../../assets/custom-styles/variables";
+
 .ymrlk-feed-container {
   display: flex;
   flex-direction: column;
   width: 100%;
   position: relative;
+  user-select: none;
 
   ymrlk-code-blog-navigation-bar {
 
@@ -14,10 +17,10 @@
         li {
 
           a {
-            color: white;
+            color: $secondary-text-color;
 
             span {
-              color: white;
+              color: $secondary-text-color;
             }
           }
 
@@ -34,7 +37,6 @@
     flex-direction: column;
     height: 400px;
     position: relative;
-    user-select: none;
 
     video {
       position: absolute;
@@ -55,7 +57,7 @@
       justify-content: center;
 
       h1 {
-        color: #FF0051;
+        color: $main-color;
         font-size: 48px;
         cursor: default;
       }
@@ -78,8 +80,8 @@
       max-width: 125px;
       padding: 5px 10px;
       border-radius: 10px;
-      border: 1px solid #e6e6e6;
-      transition: 0.3s ease-in;
+      border: 1px solid $border-color;
+      transition: $transition-time ease-in;
       margin: 0 20px 10px 0;
       cursor: pointer;
       text-align: center;
@@ -88,7 +90,7 @@
       text-overflow: ellipsis;
 
       a {
-        color: #3d3d3d;
+        color: $primary-text-color;
         text-transform: none;
         text-decoration: none;
         font-weight: bold;
@@ -96,18 +98,18 @@
       }
 
       &.selected {
-        background-color: #FF0051;
+        background-color: $main-color;
 
         a {
-          color: white;
+          color: $secondary-text-color;
         }
       }
 
       &:hover {
-        background-color: #FF0051;
+        background-color: $main-color;
 
         a {
-          color: white;
+          color: $secondary-text-color;
         }
       }
     }
@@ -126,9 +128,8 @@
         display: grid;
         grid-template-columns: 35% 65%;
         margin-bottom: 20px;
-        box-shadow: 0 15px 45px -9px rgb(0 0 0 / 20%);
+        box-shadow: $box-shadow;
         height: 250px;
-        user-select: none;
 
         .ymrlk-code-blog-post-image {
           width: 100%;
@@ -150,7 +151,7 @@
             a, span {
               text-decoration: none;
               text-transform: none;
-              color: #8d8d8d;
+              color: $primary-text-color;
               font-size: 12px;
               transition: 0.3s ease;
             }
@@ -171,14 +172,15 @@
           .ymrlk-code-blog-post-heading {
 
             h2 {
-              color: #3f3f3f;
+              color: $primary-heading-text-color;
               line-height: 100%;
               margin-top: 20px;
               font-size: 28px;
-              transition: 0.3s ease;
+              transition: $transition-time ease;
+              cursor: pointer;
 
               &:hover {
-                color: #FF0051;
+                color: $main-color;
               }
             }
 
@@ -186,10 +188,10 @@
 
           .ymrlk-code-blog-post-overview {
             padding-top: 20px;
-            border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+            border-bottom: 1px solid $border-color;
 
             p {
-              color: #8d8d8d;
+              color: $primary-text-color;
               font-weight: 400;
               font-size: 14px;
             }
@@ -206,7 +208,7 @@
               text-decoration: none;
               margin-right: 10px;
               font-size: 12px;
-              color: #8d8d8d;
+              color: $primary-text-color;
               transition: 0.3s ease;
 
               &:hover {
@@ -224,7 +226,7 @@
 
       h2 {
         margin: 0;
-        color: #505050;
+        color: $primary-heading-text-color;
         font-size: 20px;
       }
     }

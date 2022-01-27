@@ -1,7 +1,14 @@
 @import "assets/fonts/manrope.font";
 
 * {
+  box-sizing: border-box;
+  font-family: Manrope-Regular, sans-serif;
+}
+
+html, body {
   margin: 0;
   padding: 0;
-  font-family: Manrope-Regular, sans-serif;
+  box-sizing: border-box;
+  height: 100%;
+  width: 100%;
 }

@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { SubSink } from 'subsink';
 
 import { AuthService } from '../../services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'ymrlk-code-blog-login',
@@ -20,7 +21,8 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   constructor(
     private authService: AuthService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -33,9 +35,9 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   submit(): void {
-    this.subSink.sink = this.authService.login({ ...this.loginForm.value }).subscribe((isLoggedIn: boolean) => {
-      console.log(isLoggedIn);
-    });
+    this.subSink.sink = this.authService.login({ ...this.loginForm.value }).subscribe(
+      (isLoggedIn: boolean) => isLoggedIn && this.router.navigate(['feed'])
+    );
   }
 
   ngOnDestroy(): void {

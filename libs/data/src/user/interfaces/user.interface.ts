@@ -1,5 +1,4 @@
 export interface UserInterface {
-  userName?: string;
   firstName?: string;
   lastName?: string;
   shortBio?: string;

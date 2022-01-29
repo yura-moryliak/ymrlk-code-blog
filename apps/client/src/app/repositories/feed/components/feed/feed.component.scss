@@ -1,0 +1,234 @@
+@import "../../../../../assets/custom-styles/variables";
+
+.ymrlk-feed-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  position: relative;
+  user-select: none;
+
+  ymrlk-code-blog-navigation-bar {
+
+    .ymrlk-navigation-bar-container {
+      border: none;
+
+      .navigation-links {
+
+        li {
+
+          a {
+            color: $secondary-text-color;
+
+            span {
+              color: $secondary-text-color;
+            }
+          }
+
+        }
+
+      }
+
+    }
+
+  }
+
+  .ymrlk-feed-presentation-container {
+    display: flex;
+    flex-direction: column;
+    height: 400px;
+    position: relative;
+
+    video {
+      position: absolute;
+      top: -85px;
+      z-index: -1;
+      width: 100%;
+      object-fit: cover;
+      object-position: center;
+      height: 400px;
+      filter: brightness(0.5);
+    }
+
+    .ymrlk-presentation-title {
+      display: flex;
+      width: 100%;
+      height: calc(100% - 85px);
+      align-items: center;
+      justify-content: center;
+
+      h1 {
+        color: $main-color;
+        font-size: 48px;
+        cursor: default;
+      }
+
+      h4 {
+        color: white;
+        cursor: default;
+      }
+    }
+  }
+
+  .ymrlk-feed-tags-container {
+    display: flex;
+    justify-content: center;
+    padding: 0 100px;
+    flex-wrap: wrap;
+
+    .ymrlk-tag {
+      min-width: 75px;
+      max-width: 125px;
+      padding: 5px 10px;
+      border-radius: 10px;
+      border: 1px solid $border-color;
+      transition: $transition-time ease-in;
+      margin: 0 20px 10px 0;
+      cursor: pointer;
+      text-align: center;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+
+      a {
+        color: $primary-text-color;
+        text-transform: none;
+        text-decoration: none;
+        font-weight: bold;
+        font-size: 14px;
+      }
+
+      &.selected {
+        background-color: $main-color;
+
+        a {
+          color: $secondary-text-color;
+        }
+      }
+
+      &:hover {
+        background-color: $main-color;
+
+        a {
+          color: $secondary-text-color;
+        }
+      }
+    }
+  }
+
+  .ymrlk-feed-blog-content {
+    display: grid;
+    grid-template-columns: 70% 30%;
+    margin-top: 60px;
+    padding: 0 100px;
+
+    .ymrlk-feed-blog-posts {
+      padding-right: 10%;
+
+      .ymrlk-code-blog-post {
+        display: grid;
+        grid-template-columns: 35% 65%;
+        margin-bottom: 20px;
+        box-shadow: $box-shadow;
+        height: 250px;
+
+        .ymrlk-code-blog-post-image {
+          width: 100%;
+          background-image: url('../../../../../assets/images/presentation-bg.jpeg');
+          background-size: cover;
+          background-repeat: no-repeat;
+        }
+
+        .ymrlk-code-blog-post-short-info {
+          display: grid;
+          grid-template-rows: 30px 50px calc(100% - 130px) 50px;
+          padding: 0 25px;
+
+          .ymrlk-code-blog-post-created-by {
+            display: flex;
+            align-items: flex-start;
+            margin-top: 10px;
+
+            a, span {
+              text-decoration: none;
+              text-transform: none;
+              color: $primary-text-color;
+              font-size: 12px;
+              transition: 0.3s ease;
+            }
+
+            a {
+
+              &:hover {
+                opacity: 0.5;
+              }
+
+            }
+
+            span {
+              margin-left: 20px;
+            }
+          }
+
+          .ymrlk-code-blog-post-heading {
+
+            h2 {
+              color: $primary-heading-text-color;
+              line-height: 100%;
+              margin-top: 20px;
+              font-size: 28px;
+              transition: $transition-time ease;
+              cursor: pointer;
+
+              &:hover {
+                color: $main-color;
+              }
+            }
+
+          }
+
+          .ymrlk-code-blog-post-overview {
+            padding-top: 20px;
+            border-bottom: 1px solid $border-color;
+
+            p {
+              color: $primary-text-color;
+              font-weight: 400;
+              font-size: 14px;
+            }
+
+          }
+
+          .ymrlk-code-blog-post-tags-container {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+
+            a {
+              text-transform: uppercase;
+              text-decoration: none;
+              margin-right: 10px;
+              font-size: 12px;
+              color: $primary-text-color;
+              transition: 0.3s ease;
+
+              &:hover {
+                opacity: 0.5;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .ymrlk-feed-blog-recent-posts {
+      display: flex;
+      flex-direction: column;
+
+      h2 {
+        margin: 0;
+        color: $primary-heading-text-color;
+        font-size: 20px;
+      }
+    }
+  }
+}

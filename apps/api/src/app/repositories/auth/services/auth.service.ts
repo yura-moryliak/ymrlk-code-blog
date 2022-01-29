@@ -50,11 +50,17 @@ export class AuthService {
 
   private async generateRefreshToken(userUUID: string): Promise<string> {
     const refreshToken = generate(this.configService.get(configuration.YMRLK_REFRESH_TOKEN_SIZE));
+
+    // Production variant
     const expirationDate = new Date();
 
     expirationDate.setDate(
       expirationDate.getDate() + +this.configService.get(configuration.YMRLK_REFRESH_TOKEN_EXPIRATION_DAYS)
     );
+
+    // 3 Minutes for Testings
+    // const expirationDate = new Date();
+    // expirationDate.setMinutes(expirationDate.getMinutes() + 3);
 
     await this.usersService.saveOrUpdateRefreshToken(userUUID, refreshToken, expirationDate);
 

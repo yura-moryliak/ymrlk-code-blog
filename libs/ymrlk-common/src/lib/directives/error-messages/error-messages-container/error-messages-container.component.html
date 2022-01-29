@@ -1,0 +1,15 @@
+<div class="ymrlk-errors-messages-container">
+
+  <i class="close" (click)="close()">X</i>
+
+  <div class="ymrlk-errors-messages-header">
+    <span><b>{{ label }}</b> has next errors:</span>
+  </div>
+
+  <ul class="ymrlk-errors-messages-control-errors">
+
+    <li *ngFor="let error of errorsList">{{ error }}</li>
+
+  </ul>
+
+</div>

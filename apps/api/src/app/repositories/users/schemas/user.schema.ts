@@ -7,9 +7,6 @@ export type UserDocument = User & Document;
 export class User {
 
   @Prop({ type: String, maxlength: 50 })
-  userName: string;
-
-  @Prop({ type: String, maxlength: 50 })
   firstName: string;
 
   @Prop({ type: String, maxlength: 50 })

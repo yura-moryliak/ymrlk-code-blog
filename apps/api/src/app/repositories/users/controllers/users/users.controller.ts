@@ -1,4 +1,6 @@
-import { Body, Controller, Get, HttpCode, HttpException, HttpStatus, Param, Post } from '@nestjs/common';
+import { Body, Controller, Get, HttpCode,
+  HttpException, HttpStatus, Param, Post, Req, UseGuards
+} from '@nestjs/common';
 
 import { RoleEnum, UserInterface } from '@ymrlk-code-blog/data';
 
@@ -6,11 +8,18 @@ import { SkipJwtCheck } from '../../../../decorators/skip-jwt-check.decorator';
 import { UsersService } from '../../services/users.service';
 import { UserDocument } from '../../schemas/user.schema';
 import { Roles } from '../../../../decorators/roles.decorator';
+import { JwtAuthGuard } from '../../../auth/guards/jwt-auth.guard';
 
 @Controller()
 export class UsersController {
 
   constructor(private readonly usersService: UsersService) { }
+
+  @UseGuards(JwtAuthGuard)
+  @Get('profile')
+  getProfile(@Req() req) {
+    return req.user;
+  }
 
   @Get('email/:email')
   async getByEmail(@Param() email: { email: string }): Promise<UserDocument> {

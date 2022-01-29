@@ -57,7 +57,7 @@
       "projectType": "application",
       "root": "apps/client",
       "sourceRoot": "apps/client/src",
-      "prefix": "ymrlk-code-blog",
+      "prefix": "ymrlk",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
@@ -216,6 +216,32 @@
           "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": ["libs/ui/src/**/*.ts", "libs/ui/src/**/*.html"]
+          }
+        }
+      },
+      "tags": []
+    },
+    "ymrlk-common": {
+      "projectType": "library",
+      "root": "libs/ymrlk-common",
+      "sourceRoot": "libs/ymrlk-common/src",
+      "prefix": "ymrlk-code-blog",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/ymrlk-common"],
+          "options": {
+            "jestConfig": "libs/ymrlk-common/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/ymrlk-common/src/**/*.ts",
+              "libs/ymrlk-common/src/**/*.html"
+            ]
           }
         }
       },

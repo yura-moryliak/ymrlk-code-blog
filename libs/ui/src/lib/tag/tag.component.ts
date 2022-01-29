@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ViewEncapsulation, ChangeDetectionStrategy, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'ymrlk-tag',
@@ -7,11 +7,16 @@ import { Component, OnInit, ViewEncapsulation, ChangeDetectionStrategy } from '@
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class TagComponent implements OnInit {
+export class TagComponent {
 
-  constructor() { }
+  @Input() tagTitle = '';
+  @Input() isSelected = false;
 
-  ngOnInit(): void {
+  @Output() selected: EventEmitter<string> = new EventEmitter<string>();
+
+  select(): void {
+    this.isSelected = true;
+    this.selected.emit(this.tagTitle);
   }
 
 }

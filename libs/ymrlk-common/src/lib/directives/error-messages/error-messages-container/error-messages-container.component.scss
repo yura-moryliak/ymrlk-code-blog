@@ -1,0 +1,60 @@
+@import "../../../../../../../apps/client/src/assets/custom-styles/variables";
+
+ymrlk-error-messages-container {
+  position: absolute;
+  width: 100%;
+  left: 0;
+
+  .ymrlk-errors-messages-container {
+    width: 100%;
+    box-shadow: $box-shadow;
+    padding: 5px 20px;
+    border-radius: 10px;
+    background-color: $secondary-text-color;
+    z-index: 100;
+
+    .ymrlk-errors-messages-header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+      border-bottom: 1px solid $border-color;
+      font-size: 12px;
+
+      span {
+        padding: 5px 0;
+        color: $primary-heading-text-color;
+
+        b {
+          font-family: Manrope-Bold, sans-serif;
+        }
+      }
+    }
+
+    .ymrlk-errors-messages-control-errors {
+      margin: 0;
+
+      li {
+        color: $main-color;
+        font-size: 12px;
+      }
+    }
+
+    .close {
+      position: absolute;
+      right: -15px;
+      width: 20px;
+      height: 20px;
+      background-color: $main-color;
+      color: $secondary-text-color;
+      top: -15px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 10px;
+      font-style: initial;
+    }
+
+  }
+
+}

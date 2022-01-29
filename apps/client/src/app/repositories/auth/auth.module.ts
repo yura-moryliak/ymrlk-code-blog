@@ -5,6 +5,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { CookieService } from 'ngx-cookie-service';
 
+import { YmrlkCommonModule } from '@ymrlk-code-blog/ymrlk-common';
+
 import { SharedProviders } from '../../shared/providers/shared-providers';
 
 import { AuthRoutingModule } from './auth-routing.module';
@@ -22,7 +24,8 @@ import { RegisterComponent } from './components/register/register.component';
     AuthRoutingModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    YmrlkCommonModule
   ],
   providers: [
     CookieService,

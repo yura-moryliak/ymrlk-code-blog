@@ -1,13 +1,15 @@
 import { Component, OnInit, ViewEncapsulation, ChangeDetectionStrategy, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 import { SubSink } from 'subsink';
 
+import { ErrorMessageCallerInterface } from '@ymrlk-code-blog/ymrlk-common';
+
 import { AuthService } from '../../services/auth.service';
-import { Router } from '@angular/router';
 
 @Component({
-  selector: 'ymrlk-code-blog-login',
+  selector: 'ymrlk-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
   encapsulation: ViewEncapsulation.None,
@@ -16,6 +18,16 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit, OnDestroy {
 
   loginForm: FormGroup = new FormGroup({});
+
+  emailErrorMessages: ErrorMessageCallerInterface = {
+    email: () => `Is not valid`, // TODO Add translated text here
+    required: () => `Is required` // TODO Add translated text here
+  };
+
+  passwordErrorMessages: ErrorMessageCallerInterface = {
+    required: () => `Is required`, // TODO Add translated text here
+    minlength: (param: any) => `Minlength ${ param.requiredLength }` // TODO Add translated text here
+  };
 
   private subSink: SubSink = new SubSink();
 
@@ -28,8 +40,8 @@ export class LoginComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
 
     this.loginForm = this.formBuilder.group({
-      email: ['', [Validators.email, Validators.required] ],
-      password: ['', [Validators.required] ]
+      email:    ['', [Validators.email, Validators.required] ],
+      password: ['', [Validators.required, Validators.minLength(5)] ]
     });
 
   }

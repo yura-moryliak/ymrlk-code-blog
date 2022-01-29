@@ -1,1 +1,7 @@
-<p>tag works!</p>
+<div class="ymrlk-tag-container"
+     [ngClass]="{ 'selected': isSelected }"
+     (click)="select()">
+
+  <span>{{ tagTitle }}</span>
+
+</div>

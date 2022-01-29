@@ -1,25 +1,22 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { TagComponent } from './tag.component';
 
 describe('TagComponent', () => {
   let component: TagComponent;
-  let fixture: ComponentFixture<TagComponent>;
 
   beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [ TagComponent ]
-    })
-    .compileComponents();
+    component = await new TagComponent();
   });
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(TagComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+  it ('component has to be created and be truthy', async () => {
+    await expect(component).toBeTruthy();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  it ('property name initially should be empty string', async () => {
+    await expect(component.name).toEqual('');
+  });
+
+  it ('property name after assignment should be Angular', async () => {
+    component.name = 'Angular';
+    await expect(component.name).toEqual('Angular');
   });
 });

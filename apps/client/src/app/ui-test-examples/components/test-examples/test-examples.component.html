@@ -1,0 +1,10 @@
+<div class="ui-test-examples-container">
+
+  <ng-container *ngFor="let tag of tagsList">
+
+    <ymrlk-tag [tagTitle]="tag"
+               (selected)="getSelectedTag($event)"></ymrlk-tag>
+
+  </ng-container>
+
+</div>

@@ -2,7 +2,7 @@ import { Component, OnInit, ViewEncapsulation, ChangeDetectionStrategy } from '@
 import { ActivatedRoute, Params } from '@angular/router';
 
 @Component({
-  selector: 'ymrlk-code-blog-profile',
+  selector: 'ymrlk-profile',
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.scss'],
   encapsulation: ViewEncapsulation.None,

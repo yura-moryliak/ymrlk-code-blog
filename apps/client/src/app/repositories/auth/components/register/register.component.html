@@ -1,1 +1,85 @@
-<p>register works!</p>
+<div class="ymrlk-auth-container">
+
+  <div class="ymrlk-auth-info-container">
+
+    <h1>Register - create, comment, share</h1>
+
+    <p>Hi there mate:) I am glad you come here to visit my personal blog as sincere quest</p>
+    <p>Hope you will have real fun here, know something new about me, who i am, my hobbies and other cool stories</p>
+    <p>Please login or register as my sincere friend and start create your own posts, comment other posts, share posts</p>
+
+  </div>
+  <div class="ymrlk-auth-form">
+
+    <div class="logo" routerLink="">
+      <h1>&lt;YMRLK/&gt;</h1>
+    </div>
+
+    <form [formGroup]="registerForm" (ngSubmit)="submit()">
+
+      <div class="ymrlk-login-form-control">
+        <span class="required">*</span>
+
+        <input type="text"
+               placeholder="First name"
+               formControlName="firstName"
+               [ymrlkErrorMessages]="'First name'"
+               [positionOffset]="20" />
+      </div>
+
+      <div class="ymrlk-login-form-control">
+        <span class="required">*</span>
+
+        <input type="text"
+               placeholder="Last name"
+               formControlName="lastName"
+               [ymrlkErrorMessages]="'Last name'"
+               [positionOffset]="20" />
+      </div>
+
+      <div class="ymrlk-login-form-control">
+        <span class="required">*</span>
+
+        <input type="email"
+               placeholder="Email"
+               formControlName="email"
+               [ymrlkErrorMessages]="'Email'"
+               [positionOffset]="20" />
+      </div>
+
+      <div class="ymrlk-login-form-control">
+        <span class="required">*</span>
+
+        <input type="password"
+               placeholder="Password"
+               formControlName="password"
+               [ymrlkErrorMessages]="'Password'"
+               [positionOffset]="20" />
+      </div>
+
+      <div class="ymrlk-login-form-control">
+        <span class="required">*</span>
+
+        <input type="password"
+               placeholder="Confirm password"
+               formControlName="confirmPassword"
+               [ymrlkErrorMessages]="'Confirmation password'"
+               [positionOffset]="20" />
+
+        <span *ngIf="registerForm.errors?.['mismatch']">Password does not match</span>
+      </div>
+
+      <button [disabled]="registerForm.invalid">Register</button>
+
+    </form>
+
+    <div class="ymrlk-auth-navigation-links">
+
+      <a routerLink="">Home</a>
+      <a routerLink="/auth/login">Login</a>
+
+    </div>
+
+  </div>
+
+</div>

@@ -16,7 +16,8 @@
     "baseUrl": ".",
     "paths": {
       "@ymrlk-code-blog/data": ["libs/data/src/index.ts"],
-      "@ymrlk-code-blog/ui": ["libs/ui/src/index.ts"]
+      "@ymrlk-code-blog/ui": ["libs/ui/src/index.ts"],
+      "@ymrlk-code-blog/ymrlk-common": ["libs/ymrlk-common/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

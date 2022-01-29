@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, shareReplay } from 'rxjs';
 
-import { ErrorMessageCallerInterface } from '@ymrlk-code-blog/ymrlk-common';
+import { ErrorMessageCallerInterface } from '../interfaces/error-message-caller.interface';
 
 @Injectable({
   providedIn: 'root'

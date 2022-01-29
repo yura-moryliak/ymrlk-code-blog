@@ -1,5 +1,5 @@
 import {
-  ComponentRef, Directive, ElementRef,
+  ComponentRef, Directive, ElementRef, HostListener,
   Input, OnDestroy, OnInit, Renderer2, ViewContainerRef
 } from '@angular/core';
 import { NgControl } from '@angular/forms';
@@ -41,6 +41,13 @@ export class ErrorMessagesDirective implements OnInit, OnDestroy {
     });
 
     this.subscription.add(statusChangesSubscription);
+  }
+
+  @HostListener('blur')
+  blur() {
+    if (this.componentRef) {
+      this.hideError();
+    }
   }
 
   ngOnDestroy(): void {

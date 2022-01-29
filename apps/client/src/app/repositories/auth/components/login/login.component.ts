@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 
 import { SubSink } from 'subsink';
 
-import { ErrorMessageCallerInterface } from '@ymrlk-code-blog/ymrlk-common';
+import { ErrorMessageCallerInterface, ValidatorsKeyType } from '@ymrlk-code-blog/ymrlk-common';
 
 import { AuthService } from '../../services/auth.service';
 
@@ -20,13 +20,11 @@ export class LoginComponent implements OnInit, OnDestroy {
   loginForm: FormGroup = new FormGroup({});
 
   emailErrorMessages: ErrorMessageCallerInterface = {
-    email: () => `Is not valid`, // TODO Add translated text here
-    required: () => `Is required` // TODO Add translated text here
+    [ValidatorsKeyType.EMAIL]: () => `Is invalid`, // TODO Add translated text here
+    [ValidatorsKeyType.REQUIRED]: () => `Required field` // TODO Add translated text here
   };
-
   passwordErrorMessages: ErrorMessageCallerInterface = {
-    required: () => `Is required`, // TODO Add translated text here
-    minlength: (param: any) => `Minlength ${ param.requiredLength }` // TODO Add translated text here
+    [ValidatorsKeyType.REQUIRED]: () => `Is required` // TODO Add translated text here
   };
 
   private subSink: SubSink = new SubSink();
@@ -41,7 +39,7 @@ export class LoginComponent implements OnInit, OnDestroy {
 
     this.loginForm = this.formBuilder.group({
       email:    ['', [Validators.email, Validators.required] ],
-      password: ['', [Validators.required, Validators.minLength(5)] ]
+      password: ['', [Validators.required] ]
     });
 
   }

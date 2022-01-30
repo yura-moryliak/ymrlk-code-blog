@@ -23,7 +23,8 @@
         <input type="text"
                placeholder="First name"
                formControlName="firstName"
-               [ymrlkErrorMessages]="'First name'"
+               ymrlkErrorMessages
+               errorLabel="First name"
                [positionOffset]="20"
                [errorMessages]="firstAndLastNameErrorMessages" />
       </div>
@@ -34,7 +35,8 @@
         <input type="text"
                placeholder="Last name"
                formControlName="lastName"
-               [ymrlkErrorMessages]="'Last name'"
+               ymrlkErrorMessages
+               errorLabel="Last name"
                [positionOffset]="20"
                [errorMessages]="firstAndLastNameErrorMessages" />
       </div>
@@ -45,7 +47,8 @@
         <input type="email"
                placeholder="Email"
                formControlName="email"
-               [ymrlkErrorMessages]="'Email'"
+               ymrlkErrorMessages
+               errorLabel="Email"
                [positionOffset]="20"
                [errorMessages]="emailErrorMessages" />
       </div>
@@ -56,7 +59,8 @@
         <input type="password"
                placeholder="Password"
                formControlName="password"
-               [ymrlkErrorMessages]="'Password'"
+               ymrlkErrorMessages
+               errorLabel="Password"
                [positionOffset]="20"
                [errorMessages]="passwordErrorMessages" />
       </div>
@@ -67,7 +71,8 @@
         <input type="password"
                placeholder="Confirm password"
                formControlName="confirmPassword"
-               [ymrlkErrorMessages]="'Confirmation password'"
+               ymrlkErrorMessages
+               errorLabel="Confirm password"
                [positionOffset]="20"
                [errorMessages]="confirmPasswordErrorMessages"/>
       </div>

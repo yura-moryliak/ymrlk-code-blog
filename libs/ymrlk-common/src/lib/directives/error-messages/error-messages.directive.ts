@@ -15,9 +15,9 @@ import { ErrorMessageService } from './services/error-message.service';
 })
 export class ErrorMessagesDirective implements OnInit, OnDestroy {
 
-  @Input('ymrlkErrorMessages') errorLabel = '';
-  @Input() errorMessages: ErrorMessageCallerInterface | undefined;
+  @Input() errorLabel = '';
   @Input() positionOffset = 0;
+  @Input() errorMessages: ErrorMessageCallerInterface | undefined;
 
   private componentRef: ComponentRef<ErrorMessagesContainerComponent> | null = null;
   private subscription: Subscription = new Subscription();

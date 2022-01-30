@@ -1,10 +1,27 @@
+<!--<div class="ui-test-examples-container">-->
+
+<!--  <ng-container *ngFor="let tag of tagsList">-->
+
+<!--    <ymrlk-tag [tagTitle]="tag"-->
+<!--               (selected)="getSelectedTag($event)"></ymrlk-tag>-->
+
+<!--  </ng-container>-->
+
+<!--</div>-->
+
 <div class="ui-test-examples-container">
 
-  <ng-container *ngFor="let tag of tagsList">
+  <form class="ui-test-examples-form"
+        [formGroup]="form">
 
-    <ymrlk-tag [tagTitle]="tag"
-               (selected)="getSelectedTag($event)"></ymrlk-tag>
+    <h2>Custom reactive forms</h2>
 
-  </ng-container>
+    <input type="email"
+           class="ui-test-examples-form-control"
+           formControlName="email"
+           placeholder="Native input email control"
+           ymrlkErrorMessages />
+
+  </form>
 
 </div>

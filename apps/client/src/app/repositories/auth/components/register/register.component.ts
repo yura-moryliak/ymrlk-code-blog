@@ -22,19 +22,19 @@ export class RegisterComponent implements OnInit, OnDestroy {
 
   registerForm: FormGroup = new FormGroup({});
 
-  firstAndLastNameErrorMessages: ErrorMessageCallerInterface = {
+  firstAndLastNameErrorMessageCallers: ErrorMessageCallerInterface = {
     [ValidatorsKeyType.REQUIRED]: () => `Required field`,
     [ValidatorsKeyType.MIN_LENGTH]: (param: any) => `Minimum length of field is ${ param.requiredLength } symbols`
   };
-  emailErrorMessages: ErrorMessageCallerInterface = {
+  emailErrorMessageCallers: ErrorMessageCallerInterface = {
     [ValidatorsKeyType.EMAIL]: () => `Is invalid`,
     [ValidatorsKeyType.REQUIRED]: () => `Required field.`
   };
-  passwordErrorMessages: ErrorMessageCallerInterface = {
+  passwordErrorMessageCallers: ErrorMessageCallerInterface = {
     [ValidatorsKeyType.REQUIRED]: () => `Required field.`,
     [ValidatorsKeyType.MIN_LENGTH]: (param: any) => `Minimum length of field is ${ param.requiredLength } symbols`
   };
-  confirmPasswordErrorMessages: ConfirmPasswordErrorMessageCallerInterface = {
+  confirmPasswordErrorMessageCallers: ConfirmPasswordErrorMessageCallerInterface = {
     [ValidatorsKeyType.REQUIRED]: () => `Required field.`,
     passwordMismatch: () => `Confirmation password does not match`
   };

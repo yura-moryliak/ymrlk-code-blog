@@ -1,27 +1,58 @@
-<!--<div class="ui-test-examples-container">-->
+<div class="test-examples-container">
 
-<!--  <ng-container *ngFor="let tag of tagsList">-->
+  <div class="nav-links">
+    <a routerLink="">Home</a>
+    <a routerLink="/auth/login">Auth</a>
+    <a routerLink="/auth/register">Register</a>
+  </div>
 
-<!--    <ymrlk-tag [tagTitle]="tag"-->
-<!--               (selected)="getSelectedTag($event)"></ymrlk-tag>-->
+  <div class="test-examples-content">
 
-<!--  </ng-container>-->
+    <div class="column column-direction">
 
-<!--</div>-->
+      <h2>Custom tags</h2>
 
-<div class="ui-test-examples-container">
+      <ng-container *ngFor="let tag of tagsList">
 
-  <form class="ui-test-examples-form"
-        [formGroup]="form">
+        <ymrlk-tag [tagTitle]="tag"
+                   (selected)="getSelectedTag($event)"></ymrlk-tag>
 
-    <h2>Custom reactive forms</h2>
+      </ng-container>
 
-    <input type="email"
-           class="ui-test-examples-form-control"
-           formControlName="email"
-           placeholder="Native input email control"
-           ymrlkErrorMessages />
+    </div>
 
-  </form>
+    <div class="column">
+
+      <form class="test-examples-form"
+            [formGroup]="form">
+
+        <h2>Custom reactive forms</h2>
+
+        <div class="ui-test-examples-form-control-container">
+
+          <input type="email"
+                 class="ui-test-examples-form-control"
+                 placeholder="Native input email control"
+                 formControlName="email"
+                 ymrlkErrorMessages
+                 [errorLabel]="'Email'"
+                 [errorMessages]="emailErrorMessageCallers" />
+
+        </div>
+
+<!--        <ymrlk-form-control-->
+<!--          controlLabel="Password"-->
+<!--          type="password"-->
+<!--          formControlName="password"-->
+<!--          [errorLabel]="'Password'"-->
+<!--          [errorPositionOffset]="20"-->
+<!--          [errorMessageCallers]="passwordErrorMessageCallers">-->
+<!--        </ymrlk-form-control>-->
+
+      </form>
+
+    </div>
+
+  </div>
 
 </div>

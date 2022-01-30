@@ -19,11 +19,11 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   loginForm: FormGroup = new FormGroup({});
 
-  emailErrorMessages: ErrorMessageCallerInterface = {
+  emailErrorMessageCallers: ErrorMessageCallerInterface = {
     [ValidatorsKeyType.EMAIL]: () => `Is invalid`, // TODO Add translated text here
     [ValidatorsKeyType.REQUIRED]: () => `Required field` // TODO Add translated text here
   };
-  passwordErrorMessages: ErrorMessageCallerInterface = {
+  passwordErrorMessageCaller: ErrorMessageCallerInterface = {
     [ValidatorsKeyType.REQUIRED]: () => `Is required` // TODO Add translated text here
   };
 
@@ -36,12 +36,10 @@ export class LoginComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit(): void {
-
     this.loginForm = this.formBuilder.group({
       email:    ['', [Validators.email, Validators.required] ],
       password: ['', [Validators.required] ]
     });
-
   }
 
   submit(): void {

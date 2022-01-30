@@ -1,0 +1,20 @@
+<div class="ymrlk-form-control-container">
+
+  <label class="ymrlk-form-control-label" *ngIf="controlLabel">{{ controlLabel }}</label>
+  <label class="ymrlk-form-control-required" *ngIf="required">*</label>
+
+  <input class="ymrlk-form-control"
+         [type]="type"
+         [placeholder]="placeholder"
+         [(ngModel)]="value"
+         (ngModelChange)="updateValue($event)"
+         (blur)="onTouched()"
+         [disabled]="isDisabled"
+         ymrlkErrorMessages
+         [externalNgControl]="ngControl"
+         [errorLabel]="errorLabel"
+         [closable]="errorClosable"
+         [closeOnBlur]="errorClosableOnBlur"
+         [errorMessages]="errorMessageCallers" />
+
+</div>

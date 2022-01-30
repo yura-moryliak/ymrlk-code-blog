@@ -1,6 +1,6 @@
 <div class="ymrlk-errors-messages-container">
 
-  <i class="close" (click)="close()">X</i>
+  <i class="close" *ngIf="closable" (click)="close()">X</i>
 
   <div class="ymrlk-errors-messages-header">
     <span><b>{{ label }}:</b></span>

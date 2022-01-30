@@ -1,0 +1,11 @@
+.ymrlk-form-control-container {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+
+  .ymrlk-form-control-required {
+    position: absolute;
+    left: -10px;
+    top: 0;
+  }
+}

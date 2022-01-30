@@ -1,22 +1,60 @@
-.ui-test-examples-container {
+.test-examples-container {
   display: flex;
   flex-direction: column;
   width: 100%;
   height: 100%;
-  padding: 20px;
 
-  .ui-test-examples-form {
-    width: 500px;
+  .nav-links {
     display: flex;
     align-items: center;
-    flex-direction: column;
-    border: 1px solid #000;
-    padding: 20px;
+    justify-content: flex-end;
+    height: 45px;
+    background-color: #FF0051;
+    padding: 0 20px;
+    margin-bottom: 20px;
 
-    .ui-test-examples-form-control {
-      width: 100%;
-      height: 30px;
-      margin-bottom: 20px;
+    a {
+      text-decoration: none;
+      color: white;
+      display: flex;
+      padding: 0 10px;
     }
   }
+
+  .test-examples-content {
+    display: flex;
+    padding: 0 20px;
+
+    .column {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+    }
+
+    .test-examples-form {
+      width: 500px;
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      border: 1px solid #000;
+      padding: 20px;
+
+      .ui-test-examples-form-control-container {
+        position: relative;
+        width: 100%;
+      }
+
+      .ui-test-examples-form-control,
+      ymrlk-form-control {
+        width: 100%;
+        margin-bottom: 20px;
+      }
+    }
+
+  }
+}
+
+.column-direction {
+  flex-direction: column;
 }

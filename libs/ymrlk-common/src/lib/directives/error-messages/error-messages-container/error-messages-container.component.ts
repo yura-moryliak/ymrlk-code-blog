@@ -20,6 +20,7 @@ export class ErrorMessagesContainerComponent implements OnInit, OnDestroy {
 
   @Input() label: string | undefined;
   @Input() ngControl: NgControl | undefined;
+  @Input() closable: boolean | undefined;
 
   @Output() closeErrorContainer: EventEmitter<void> = new EventEmitter<void>();
 

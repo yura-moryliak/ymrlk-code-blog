@@ -17,27 +17,29 @@
 
     <form [formGroup]="loginForm" (ngSubmit)="submit()">
 
-      <div class="ymrlk-auth-form-control">
-        <span class="required">*</span>
-        <input type="email"
-               placeholder="Email"
-               formControlName="email"
-               ymrlkErrorMessages
-               errorLabel="Email"
-               [positionOffset]="20"
-               [errorMessages]="emailErrorMessages" />
-      </div>
+      <ymrlk-form-control
+        class="ymrlk-auth-form-control"
+        formControlName="email"
+        type="email"
+        placeholder="Email"
+        errorLabel="Email"
+        [required]="true"
+        [errorMessageCallers]="emailErrorMessageCallers"
+        [errorClosable]="true"
+        [errorClosableOnBlur]="true">
+      </ymrlk-form-control>
 
-      <div class="ymrlk-auth-form-control">
-        <span class="required">*</span>
-        <input type="password"
-               placeholder="Password"
-               formControlName="password"
-               ymrlkErrorMessages
-               errorLabel="Password"
-               [positionOffset]="20"
-               [errorMessages]="passwordErrorMessages" />
-      </div>
+      <ymrlk-form-control
+        class="ymrlk-auth-form-control"
+        formControlName="password"
+        type="password"
+        placeholder="Password"
+        errorLabel="Password"
+        [required]="true"
+        [errorMessageCallers]="passwordErrorMessageCaller"
+        [errorClosable]="true"
+        [errorClosableOnBlur]="true">
+      </ymrlk-form-control>
 
       <button [disabled]="loginForm.invalid">Login</button>
 

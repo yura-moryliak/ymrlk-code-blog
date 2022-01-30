@@ -1,6 +1,8 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
+import { ErrorMessageCallerInterface } from '@ymrlk-code-blog/ymrlk-common';
+
 @Component({
   selector: 'ymrlk-test-examples',
   templateUrl: './test-examples.component.html',
@@ -20,6 +22,16 @@ export class TestExamplesComponent implements OnInit {
 
   form: FormGroup = new FormGroup({});
 
+  emailErrorMessageCallers: ErrorMessageCallerInterface = {
+    email: () => `Is invalid. Provide valid email`,
+    required: () => `Required field`
+  };
+  passwordErrorMessageCallers: ErrorMessageCallerInterface = {
+    required: () => `Required field`,
+    minlength: (param: any) => `Min length is ${ param.requiredLength } symbols`
+  };
+  value = 'moryliak.y@gmail.com';
+
   constructor(private fb: FormBuilder) { }
 
   ngOnInit(): void {
@@ -32,7 +44,8 @@ export class TestExamplesComponent implements OnInit {
 
   private initForm(): void {
     this.form = this.fb.group({
-      email: ['', [Validators.required, Validators.required]]
+      email: ['moryliak.y@gmail.com', [Validators.email, Validators.required]],
+      password: ['', [Validators.required, Validators.minLength(5)]]
     });
   }
 }

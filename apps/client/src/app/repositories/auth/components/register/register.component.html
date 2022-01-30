@@ -17,65 +17,65 @@
 
     <form [formGroup]="registerForm" (ngSubmit)="submit()">
 
-      <div class="ymrlk-auth-form-control">
-        <span class="required">*</span>
+      <ymrlk-form-control
+        class="ymrlk-auth-form-control"
+        formControlName="firstName"
+        type="text"
+        placeholder="First name"
+        errorLabel="First name"
+        [required]="true"
+        [errorMessageCallers]="firstAndLastNameErrorMessageCallers"
+        [errorClosable]="true"
+        [errorClosableOnBlur]="true">
+      </ymrlk-form-control>
 
-        <input type="text"
-               placeholder="First name"
-               formControlName="firstName"
-               ymrlkErrorMessages
-               errorLabel="First name"
-               [positionOffset]="20"
-               [errorMessages]="firstAndLastNameErrorMessages" />
-      </div>
+      <ymrlk-form-control
+        class="ymrlk-auth-form-control"
+        formControlName="lastName"
+        type="text"
+        placeholder="Last name"
+        errorLabel="Last name"
+        [required]="true"
+        [errorMessageCallers]="firstAndLastNameErrorMessageCallers"
+        [errorClosable]="true"
+        [errorClosableOnBlur]="true">
+      </ymrlk-form-control>
 
-      <div class="ymrlk-auth-form-control">
-        <span class="required">*</span>
+      <ymrlk-form-control
+        class="ymrlk-auth-form-control"
+        formControlName="email"
+        type="email"
+        placeholder="Email"
+        errorLabel="Email"
+        [required]="true"
+        [errorMessageCallers]="emailErrorMessageCallers"
+        [errorClosable]="true"
+        [errorClosableOnBlur]="true">
+      </ymrlk-form-control>
 
-        <input type="text"
-               placeholder="Last name"
-               formControlName="lastName"
-               ymrlkErrorMessages
-               errorLabel="Last name"
-               [positionOffset]="20"
-               [errorMessages]="firstAndLastNameErrorMessages" />
-      </div>
+      <ymrlk-form-control
+        class="ymrlk-auth-form-control"
+        formControlName="password"
+        type="password"
+        placeholder="Password"
+        errorLabel="Password"
+        [required]="true"
+        [errorMessageCallers]="passwordErrorMessageCallers"
+        [errorClosable]="true"
+        [errorClosableOnBlur]="true">
+      </ymrlk-form-control>
 
-      <div class="ymrlk-auth-form-control">
-        <span class="required">*</span>
-
-        <input type="email"
-               placeholder="Email"
-               formControlName="email"
-               ymrlkErrorMessages
-               errorLabel="Email"
-               [positionOffset]="20"
-               [errorMessages]="emailErrorMessages" />
-      </div>
-
-      <div class="ymrlk-auth-form-control">
-        <span class="required">*</span>
-
-        <input type="password"
-               placeholder="Password"
-               formControlName="password"
-               ymrlkErrorMessages
-               errorLabel="Password"
-               [positionOffset]="20"
-               [errorMessages]="passwordErrorMessages" />
-      </div>
-
-      <div class="ymrlk-auth-form-control">
-        <span class="required">*</span>
-
-        <input type="password"
-               placeholder="Confirm password"
-               formControlName="confirmPassword"
-               ymrlkErrorMessages
-               errorLabel="Confirm password"
-               [positionOffset]="20"
-               [errorMessages]="confirmPasswordErrorMessages"/>
-      </div>
+      <ymrlk-form-control
+        class="ymrlk-auth-form-control"
+        formControlName="confirmPassword"
+        type="password"
+        placeholder="Confirm password"
+        errorLabel="Confirm password"
+        [required]="true"
+        [errorMessageCallers]="confirmPasswordErrorMessageCallers"
+        [errorClosable]="true"
+        [errorClosableOnBlur]="true">
+      </ymrlk-form-control>
 
       <button [disabled]="registerForm.invalid">Register</button>
 

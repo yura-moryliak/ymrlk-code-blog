@@ -1,15 +1,14 @@
 import { Component, ViewEncapsulation, ChangeDetectionStrategy, OnInit, OnDestroy } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-
-import { SubSink } from 'subsink';
+import { FormBuilder, Validators } from '@angular/forms';
 
 import { ErrorMessageCallerInterface, ValidatorsKeyType } from '@ymrlk-code-blog/ymrlk-common';
 
-import { AuthService } from '../../services/auth.service';
+import { UsersService } from '../../../user/services/users.service';
 import { CustomValidators } from '../../../../classes/custom-validators';
 import {
   ConfirmPasswordErrorMessageCallerInterface
 } from '../../interfaces/confirm-password-error-message-caller.interface';
+import { AuthBaseComponent } from '../auth-base/auth-base.component';
 
 @Component({
   selector: 'ymrlk-register',
@@ -18,9 +17,7 @@ import {
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class RegisterComponent implements OnInit, OnDestroy {
-
-  registerForm: FormGroup = new FormGroup({});
+export class RegisterComponent extends AuthBaseComponent implements OnInit, OnDestroy {
 
   firstAndLastNameErrorMessageCallers: ErrorMessageCallerInterface = {
     [ValidatorsKeyType.REQUIRED]: () => `Required field`,
@@ -39,15 +36,18 @@ export class RegisterComponent implements OnInit, OnDestroy {
     passwordMismatch: () => `Confirmation password does not match`
   };
 
-  private subSink: SubSink = new SubSink();
+  // TODO remove after impl
+  enableMockUserData = false;
 
   constructor(
     private formBuilder: FormBuilder,
-    private authService: AuthService
-  ) { }
+    private usersService: UsersService
+  ) {
+    super();
+  }
 
   ngOnInit(): void {
-    this.registerForm = this.formBuilder.group({
+    this.form = this.formBuilder.group({
       firstName:        ['', [Validators.required, Validators.minLength(3)]],
       lastName:         ['', [Validators.required, Validators.minLength(3)]],
       email:            ['', [Validators.email, Validators.required]],
@@ -58,11 +58,35 @@ export class RegisterComponent implements OnInit, OnDestroy {
     });
   }
 
-  ngOnDestroy(): void {
+  override submit(): void {
+    this.subSink.sink = this.usersService.register(this.form.value).subscribe((isRegistered: boolean) => {
+
+      if (isRegistered) {
+        // TODO Show success notification with corresponding message
+        // Clear reactive form state pristine
+        console.log('User created...');
+      }
+
+    });
+  }
+
+  override ngOnDestroy(): void {
     this.subSink.unsubscribe();
   }
 
-  submit(): void {
-    console.log(this.registerForm.value);
+
+  // TODO remove after impl
+  patchFormValue(): void {
+
+    if (this.enableMockUserData) {
+      this.form.patchValue({
+        firstName: 'Yura',
+        lastName: 'Moryliak',
+        email: 'moryliak.y@gmail.com',
+        password: '12345',
+        confirmPassword: '12345'
+      });
+    }
+
   }
 }

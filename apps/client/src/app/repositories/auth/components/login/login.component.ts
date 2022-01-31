@@ -1,12 +1,11 @@
 import { Component, OnInit, ViewEncapsulation, ChangeDetectionStrategy, OnDestroy } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-
-import { SubSink } from 'subsink';
 
 import { ErrorMessageCallerInterface, ValidatorsKeyType } from '@ymrlk-code-blog/ymrlk-common';
 
 import { AuthService } from '../../services/auth.service';
+import { AuthBaseComponent } from '../auth-base/auth-base.component';
 
 @Component({
   selector: 'ymrlk-login',
@@ -15,9 +14,7 @@ import { AuthService } from '../../services/auth.service';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class LoginComponent implements OnInit, OnDestroy {
-
-  loginForm: FormGroup = new FormGroup({});
+export class LoginComponent extends AuthBaseComponent implements OnInit, OnDestroy {
 
   emailErrorMessageCallers: ErrorMessageCallerInterface = {
     [ValidatorsKeyType.EMAIL]: () => `Is invalid`, // TODO Add translated text here
@@ -27,28 +24,28 @@ export class LoginComponent implements OnInit, OnDestroy {
     [ValidatorsKeyType.REQUIRED]: () => `Is required` // TODO Add translated text here
   };
 
-  private subSink: SubSink = new SubSink();
-
   constructor(
     private authService: AuthService,
     private formBuilder: FormBuilder,
     private router: Router
-  ) { }
+  ) {
+    super();
+  }
 
   ngOnInit(): void {
-    this.loginForm = this.formBuilder.group({
+    this.form = this.formBuilder.group({
       email:    ['', [Validators.email, Validators.required] ],
       password: ['', [Validators.required] ]
     });
   }
 
-  submit(): void {
-    this.subSink.sink = this.authService.login({ ...this.loginForm.value }).subscribe(
+  override submit(): void {
+    this.subSink.sink = this.authService.login({ ...this.form.value }).subscribe(
       (isLoggedIn: boolean) => isLoggedIn && this.router.navigate(['feed'])
     );
   }
 
-  ngOnDestroy(): void {
+  override ngOnDestroy(): void {
     this.subSink.unsubscribe();
   }
 }

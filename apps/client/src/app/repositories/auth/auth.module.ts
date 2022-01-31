@@ -13,12 +13,14 @@ import { SharedProviders } from '../../shared/providers/shared-providers';
 import { AuthRoutingModule } from './auth-routing.module';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
+import { AuthBaseComponent } from './components/auth-base/auth-base.component';
 
 
 @NgModule({
   declarations: [
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    AuthBaseComponent
   ],
   imports: [
     CommonModule,

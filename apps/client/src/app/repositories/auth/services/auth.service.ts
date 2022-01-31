@@ -49,11 +49,6 @@ export class AuthService {
     )
   }
 
-  register(): Observable<null> {
-    // TODO Provide register logic here...
-    return of(null);
-  }
-
   logout(): void {
     this.doLogoutUser();
   }

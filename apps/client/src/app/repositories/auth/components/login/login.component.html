@@ -15,7 +15,7 @@
       <h1>&lt;YMRLK/&gt;</h1>
     </div>
 
-    <form [formGroup]="loginForm" (ngSubmit)="submit()">
+    <form [formGroup]="form" (ngSubmit)="submit()">
 
       <ymrlk-form-control
         class="ymrlk-auth-form-control"
@@ -41,7 +41,7 @@
         [errorClosableOnBlur]="true">
       </ymrlk-form-control>
 
-      <button [disabled]="loginForm.invalid">Login</button>
+      <button [disabled]="form.invalid">Login</button>
 
     </form>
 

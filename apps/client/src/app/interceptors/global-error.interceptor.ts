@@ -14,9 +14,6 @@ export class GlobalErrorInterceptor implements HttpInterceptor {
 
         switch (error.status) {
 
-          case 400:
-            break;
-
           case 401:
             break;
 
@@ -28,6 +25,9 @@ export class GlobalErrorInterceptor implements HttpInterceptor {
               'Network Error', // TODO add translations here
               'Please check network or firewall' // TODO add translations here
             );
+            break;
+
+          case 400:
             break;
 
           case 404:

@@ -38,15 +38,17 @@
     height: 400px;
     position: relative;
 
-    video {
+    &:after {
+      content: '';
       position: absolute;
       top: -85px;
-      z-index: -1;
+      left: 0;
       width: 100%;
-      object-fit: cover;
-      object-position: center;
-      height: 400px;
-      filter: brightness(0.5);
+      height: 100%;
+      background-image: url('../../../../../assets/images/bg.jpg');
+      background-repeat: no-repeat;
+      filter: brightness(0.3);
+      z-index: -1;
     }
 
     .ymrlk-presentation-title {

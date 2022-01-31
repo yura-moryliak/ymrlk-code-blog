@@ -4,6 +4,8 @@ ymrlk-error-messages-container {
   position: absolute;
   width: 100%;
   left: 0;
+  display: block;
+  z-index: 100;
 
   .ymrlk-errors-messages-container {
     width: 100%;
@@ -11,7 +13,6 @@ ymrlk-error-messages-container {
     padding: 5px 20px;
     border-radius: 10px;
     background-color: $secondary-text-color;
-    z-index: 100;
 
     .ymrlk-errors-messages-header {
       display: flex;
@@ -41,12 +42,12 @@ ymrlk-error-messages-container {
 
     .close {
       position: absolute;
-      right: -15px;
+      right: -5px;
       width: 20px;
       height: 20px;
       background-color: $main-color;
       color: $secondary-text-color;
-      top: -15px;
+      top: -5px;
       border-radius: 50%;
       display: inline-flex;
       align-items: center;
@@ -54,6 +55,11 @@ ymrlk-error-messages-container {
       font-size: 10px;
       font-style: initial;
       cursor: pointer;
+      transition: $transition-time ease-in;
+
+      &:hover {
+        opacity: .69;
+      }
     }
 
   }

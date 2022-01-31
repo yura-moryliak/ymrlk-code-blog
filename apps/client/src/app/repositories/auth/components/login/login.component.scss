@@ -37,31 +37,6 @@ ymrlk-login {
       justify-content: center;
       width: 450px;
 
-      .ymrlk-login-form-control {
-        width: 100%;
-        position: relative;
-
-        &:first-of-type {
-          margin-bottom: 20px;
-        }
-
-        &:last-of-type {
-          margin-bottom: 30px;
-        }
-
-        input {
-          border-width: 0;
-          box-shadow: $box-shadow;
-          width: 100%;
-          padding: 20px;
-          border-radius: 5px;
-          outline: none;
-        }
-
-
-
-      }
-
       button {
         background-color: $main-color;
         color: $secondary-text-color;

@@ -1,0 +1,33 @@
+<div *ngIf="notification" class="ecc-notification-toast {{ notification.config.notificationType }}">
+
+    <img class="ecc-notification-toast-icon"
+         *ngIf="notification.config.icon"
+         [src]="notification.config.icon.src"
+         [alt]="notification.config.icon.alt"/>
+
+    <div class="ecc-notification-toast-container">
+
+        <div class="ecc-notification-toast-title" *ngIf="notification.message.title">
+            {{ notification.message.title }}
+        </div>
+
+        <div class="ecc-notification-toast-text" *ngIf="notification.message.text">
+            {{ notification.message.text }}
+        </div>
+
+        <button class="ecc-notification-toast-action-button"
+                *ngIf="notification.config.actionButton"
+                (click)="toastActionButton(notification)">
+            {{ notification.config.actionButton.label }}
+        </button>
+
+    </div>
+
+    <img class="ecc-notification-toast-close-button"
+         *ngIf="notification.config.closeButton"
+         [src]="notification.config.closeButton.image.src"
+         [alt]="notification.config.closeButton.image.alt"
+         (click)="close()"/>
+
+</div>
+

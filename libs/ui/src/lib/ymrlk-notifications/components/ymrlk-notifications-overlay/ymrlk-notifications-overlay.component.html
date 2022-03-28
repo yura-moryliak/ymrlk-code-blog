@@ -1,0 +1,14 @@
+<div class="ecc-notification-group ecc-notifications-group-{{ notificationGroup.position }}"
+     *ngFor="let notificationGroup of notificationsGroups$ | async">
+
+    <ecc-toast class="ecc-toast"
+               *ngFor="let notification of notificationGroup.notifications | slice : 0 : notificationGroup.notifications[0].config.maxStackSize"
+               [notification]="notification">
+    </ecc-toast>
+
+</div>
+
+<ecc-notification-modal
+        *ngIf="modalNotification$ | async as modalNotification"
+        [modalNotification]="modalNotification">
+</ecc-notification-modal>

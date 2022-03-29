@@ -2,7 +2,7 @@ import {ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {YmrlkToastComponent} from './ymrlk-toast.component';
 
-describe('EccToastComponent', () => {
+describe('YmrlkToastComponent', () => {
   let component: YmrlkToastComponent;
   let fixture: ComponentFixture<YmrlkToastComponent>;
 

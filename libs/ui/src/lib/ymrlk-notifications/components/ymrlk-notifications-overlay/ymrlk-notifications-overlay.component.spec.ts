@@ -2,7 +2,7 @@ import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {YmrlkNotificationsOverlayComponent} from './ymrlk-notifications-overlay.component';
 
-describe('NotificationsOverlayComponent', () => {
+describe('YmrlkNotificationsOverlayComponent', () => {
   let component: YmrlkNotificationsOverlayComponent;
   let fixture: ComponentFixture<YmrlkNotificationsOverlayComponent>;
 

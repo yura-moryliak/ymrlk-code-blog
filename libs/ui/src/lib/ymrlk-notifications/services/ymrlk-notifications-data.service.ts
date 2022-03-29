@@ -12,39 +12,39 @@ import {YmrlkNotificationModalInterface} from '../interfaces/ymrlk-notification-
 export class YmrlkNotificationsDataService {
 
   public get hasNotifications(): boolean {
-    return !!this._notificationGroupsState.length;
+    return !!this.notificationGroupsState.length;
   }
 
   public notificationGroups$: Observable<YmrlkNotificationGroupInterface[]>;
 
-  public modalNotification$: Observable<YmrlkNotificationModalInterface>;
+  public modalNotification$: Observable<YmrlkNotificationModalInterface | null>;
 
-  private _notificationGroupsState: YmrlkNotificationGroupInterface[] = [];
+  private notificationGroupsState: YmrlkNotificationGroupInterface[] = [];
 
-  private _notificationGroups: BehaviorSubject<YmrlkNotificationGroupInterface[]> =
-    new BehaviorSubject<YmrlkNotificationGroupInterface[]>(this._notificationGroupsState);
+  private notificationGroups: BehaviorSubject<YmrlkNotificationGroupInterface[]> =
+    new BehaviorSubject<YmrlkNotificationGroupInterface[]>(this.notificationGroupsState);
 
-  private _modalNotificationState: YmrlkNotificationModalInterface = null;
+  private modalNotificationState: YmrlkNotificationModalInterface | null = null;
 
-  private _modalNotification: BehaviorSubject<YmrlkNotificationModalInterface> =
-    new BehaviorSubject<YmrlkNotificationModalInterface>(this._modalNotificationState);
+  private modalNotification: BehaviorSubject<YmrlkNotificationModalInterface | null> =
+    new BehaviorSubject<YmrlkNotificationModalInterface | null>(this.modalNotificationState);
 
   constructor() {
-    this.notificationGroups$ = this._notificationGroups.asObservable();
-    this.modalNotification$ = this._modalNotification.asObservable();
+    this.notificationGroups$ = this.notificationGroups.asObservable();
+    this.modalNotification$ = this.modalNotification.asObservable();
   }
 
   public add(notification: YmrlkNotificationInterface): void {
 
-    const groupByPosition = this._notificationGroupsState
+    const groupByPosition = this.notificationGroupsState
       .find((group: YmrlkNotificationGroupInterface) => group.position === notification.config.position);
 
-    if (this.checkIfExists(groupByPosition, notification)) {
+    if (this.checkIfExists(groupByPosition as YmrlkNotificationGroupInterface, notification)) {
       return;
     }
 
     if (!groupByPosition) {
-      this._notificationGroupsState.push({
+      this.notificationGroupsState.push({
         position: notification.config.position,
         notifications: [notification]
       });
@@ -52,26 +52,26 @@ export class YmrlkNotificationsDataService {
       groupByPosition.notifications.push(notification);
     }
 
-    this._notificationGroups.next(this._notificationGroupsState);
+    this.notificationGroups.next(this.notificationGroupsState);
   }
 
   public addModal(modalNotification: YmrlkNotificationModalInterface): void {
-    if (this._modalNotificationState) {
+    if (this.modalNotificationState) {
       return console.error(`You can't open more than one Notification Modal`);
     }
 
-    this._modalNotificationState = modalNotification;
-    this._modalNotification.next(this._modalNotificationState);
+    this.modalNotificationState = modalNotification;
+    this.modalNotification.next(this.modalNotificationState);
   }
 
   public removeModal(): void {
-    this._modalNotificationState = null;
-    this._modalNotification.next(this._modalNotificationState);
+    this.modalNotificationState = null;
+    this.modalNotification.next(this.modalNotificationState);
   }
 
   public remove(notification: any): void {
 
-    const groupByPosition = this._notificationGroupsState
+    const groupByPosition = this.notificationGroupsState
       .find((group: YmrlkNotificationGroupInterface) => group.position === notification.config.position);
 
     if (!groupByPosition) {
@@ -83,10 +83,10 @@ export class YmrlkNotificationsDataService {
     groupByPosition.notifications.splice(notificationIndex, 1);
 
     if (!groupByPosition.notifications.length) {
-      this._notificationGroupsState.splice(this._notificationGroupsState.indexOf(groupByPosition), 1);
+      this.notificationGroupsState.splice(this.notificationGroupsState.indexOf(groupByPosition), 1);
     }
 
-    this._notificationGroups.next(this._notificationGroupsState);
+    this.notificationGroups.next(this.notificationGroupsState);
   }
 
   private checkIfExists(group: YmrlkNotificationGroupInterface, notification: YmrlkNotificationInterface): boolean {

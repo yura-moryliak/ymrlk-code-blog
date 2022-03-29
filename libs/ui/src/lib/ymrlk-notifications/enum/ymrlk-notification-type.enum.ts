@@ -1,6 +1,6 @@
 export enum YmrlkNotificationTypeEnum {
-  Warning = 'ecc-notification-warning',
-  Info = 'ecc-notification-info',
-  Success = 'ecc-notification-success',
-  Error = 'ecc-notification-error'
+  Warning = 'ymrlk-notification-warning',
+  Info = 'ymrlk-notification-info',
+  Success = 'ymrlk-notification-success',
+  Error = 'ymrlk-notification-error'
 }

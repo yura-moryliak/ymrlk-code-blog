@@ -1,10 +1,3 @@
-/**
- * @description EccNotificationsOverlayComponent represent component, that contain notification modal and notification (ecc-toast) and
- * overlay them.
- *
- * @module EccNotificationsModule
- */
-
 import {Component, OnInit} from '@angular/core';
 
 import {Observable} from 'rxjs';
@@ -14,28 +7,18 @@ import {YmrlkNotificationGroupInterface} from '../../interfaces/ymrlk-notificati
 import {YmrlkNotificationModalInterface} from '../../interfaces/ymrlk-notification-modal.interface';
 
 @Component({
-  selector: 'ecc-notifications-overlay',
+  selector: 'ymrlk-notifications-overlay',
   templateUrl: './ymrlk-notifications-overlay.component.html',
   styleUrls: ['./ymrlk-notifications-overlay.component.scss']
 })
 export class YmrlkNotificationsOverlayComponent implements OnInit {
 
-  /**
-   * Observable that contains group of ecc-notifications
-   */
-  public notificationsGroups$: Observable<YmrlkNotificationGroupInterface[]>;
+  public notificationsGroups$: Observable<YmrlkNotificationGroupInterface[]> | undefined;
 
-  /**
-   * Observable that contains notification modal window
-   */
-  public modalNotification$: Observable<YmrlkNotificationModalInterface>;
+  public modalNotification$: Observable<YmrlkNotificationModalInterface | null> | undefined;
 
-  constructor(private _dataService: YmrlkNotificationsDataService) {
-  }
+  constructor(private _dataService: YmrlkNotificationsDataService) { }
 
-  /**
-   * In ngOnInit lifecycle hook we take Observables from EccNotificationsDataService and save it in our internal Observables variables
-   */
   public ngOnInit(): void {
     this.notificationsGroups$ = this._dataService.notificationGroups$;
     this.modalNotification$ = this._dataService.modalNotification$;

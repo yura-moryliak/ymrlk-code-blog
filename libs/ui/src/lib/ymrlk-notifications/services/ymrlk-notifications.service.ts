@@ -26,31 +26,31 @@ import {YmrlkNotificationConfig} from '../tokens/ymrlk-notification-config.token
 export class YmrlkNotificationsService {
 
   public get overlayCreated(): boolean {
-    return !!this._overlayInstance;
+    return !!this.overlayInstance;
   }
 
-  private _renderer: Renderer2;
+  private renderer: Renderer2;
 
-  private _overlayInstance: ComponentRef<YmrlkNotificationsOverlayComponent>;
+  private overlayInstance: ComponentRef<YmrlkNotificationsOverlayComponent> | undefined;
 
-  private _document?: Document;
+  private document?: Document;
 
   constructor(
-    private _componentFactoryResolver: ComponentFactoryResolver,
-    private _applicationRef: ApplicationRef,
-    private _injector: Injector,
-    private _rendererFactory: RendererFactory2,
-    private _dataService: YmrlkNotificationsDataService,
-    @Inject(EccNotificationConfig) private _notificationConfig: YmrlkNotificationGlobalConfigInterface,
+    private componentFactoryResolver: ComponentFactoryResolver,
+    private applicationRef: ApplicationRef,
+    private injector: Injector,
+    private rendererFactory: RendererFactory2,
+    private dataService: YmrlkNotificationsDataService,
+    @Inject(YmrlkNotificationConfig) private notificationConfig: YmrlkNotificationGlobalConfigInterface,
     @Inject(DOCUMENT) document?: any
   ) {
-    this._document = document as Document;
-    this._renderer = this._rendererFactory.createRenderer(null, null);
+    this.document = document as Document;
+    this.renderer = this.rendererFactory.createRenderer(null, null);
   }
 
   public showNotification(
     message: YmrlkNotificationContentInterface,
-    configuration?: YmrlkNotificationToastConfigInterface
+    configuration?: YmrlkNotificationToastConfigInterface | undefined
   ): YmrlkNotificationInterface {
     if (!this.overlayCreated) {
       this.attachOverlay();
@@ -60,30 +60,15 @@ export class YmrlkNotificationsService {
     const destroy$ = new Subject<boolean>();
     const notification: YmrlkNotificationInterface = {message, config, destroy$};
 
-    this._dataService.add(notification);
+    this.dataService.add(notification);
 
     return notification;
   }
 
-  /**
-   * Method that responsible for show notification modals.
-   *
-   * @remarks Method check if overlay was created and attach this overlay to body. Also prepare all necessary data and add it to
-   * notification modal.
-   *
-   * @param content - notification modal title, text, buttons etc.
-   * @param configuration - modal configuration that contains possibility to make backdrop click outside the modal and check if close button
-   * is allowed.
-   *
-   * @see YmrlkNotificationModalContentInterface
-   * @see YmrlkNotificationModalConfigInterface
-   * @see YmrlkNotificationModalInterface
-   *
-   * @returns modal notification.
-   */
   public showNotificationModal(
     content: YmrlkNotificationModalContentInterface,
-    configuration?: YmrlkNotificationModalConfigInterface): YmrlkNotificationModalInterface {
+    configuration?: YmrlkNotificationModalConfigInterface
+  ): YmrlkNotificationModalInterface {
 
     if (!this.overlayCreated) {
       this.attachOverlay();
@@ -93,75 +78,50 @@ export class YmrlkNotificationsService {
     const confirm$ = new Subject<boolean>();
     const modalNotification: YmrlkNotificationModalInterface = {content, config, confirm$};
 
-    this._dataService.addModal(modalNotification);
+    this.dataService.addModal(modalNotification);
 
     return modalNotification;
   }
 
-  /**
-   * Method to hide (destroy) ecc-notifications (ecc-toast).
-   *
-   * @param notification - all data that needed to show notification (title, text, duration, position etc.)
-   * @see YmrlkNotificationInterface
-   */
-  public hideNotification(notification: YmrlkNotificationInterface): void {
-    this._dataService.remove(notification);
+  public hideNotification(notification: YmrlkNotificationInterface | null): void {
+    this.dataService.remove(notification);
     notification = null;
   }
 
-  /**
-   * Method to hide (destroy) notification modal.
-   */
   public hideNotificationModal(): void {
-    this._dataService.removeModal();
+    this.dataService.removeModal();
   }
 
-  /**
-   * Method for attaching overlay component to body.
-   *
-   * @remarks Method create dynamic overlay component and attach it to body.
-   */
   private attachOverlay(): void {
 
-    this._overlayInstance = this._componentFactoryResolver.resolveComponentFactory(YmrlkNotificationsOverlayComponent)
-      .create(this._injector);
+    this.overlayInstance = this.componentFactoryResolver.resolveComponentFactory(YmrlkNotificationsOverlayComponent)
+      .create(this.injector);
 
-    this._applicationRef.attachView(this._overlayInstance.hostView);
+    this.applicationRef.attachView(this.overlayInstance.hostView);
 
-    const domElement = (this._overlayInstance.hostView as EmbeddedViewRef<any>).rootNodes[0] as HTMLElement;
+    const domElement = (this.overlayInstance.hostView as EmbeddedViewRef<any>).rootNodes[0] as HTMLElement;
 
-    this._renderer.appendChild(this._document.body, domElement);
+    this.renderer.appendChild(this.document?.body, domElement);
   }
 
-  /**
-   * Method to get modal configuration.
-   *
-   * @param config - modal config that contains possibility to make backdrop click, and provide close button on notification modal
-   *
-   * @see YmrlkNotificationModalConfigInterface
-   */
-  private getModalNotificationConfig = (config: YmrlkNotificationModalConfigInterface): YmrlkNotificationModalConfigInterface => ({
+  private getModalNotificationConfig = (config: YmrlkNotificationModalConfigInterface | undefined): YmrlkNotificationModalConfigInterface => ({
+    // eslint-disable-next-line no-prototype-builtins
     backdropDismiss: !(config && config.hasOwnProperty('backdropDismiss') && config.backdropDismiss === false),
+    // eslint-disable-next-line no-prototype-builtins
     closeButton:  !(config && config.hasOwnProperty('closeButton') && config.closeButton === false)
   })
 
-  /**
-   * Method to get notification (ecc-toast) config
-   *
-   * @param config - configuration object that contains ecc-toast duration, position etc.
-   * @see YmrlkNotificationToastConfigInterface
-   */
-  private getConfig = (config: YmrlkNotificationToastConfigInterface): YmrlkNotificationToastConfigInterface => ({
-    duration: (config && config.duration) || this._notificationConfig.toastConfig.duration || 6000,
-    position: (config && config.position) || this._notificationConfig.toastConfig.position || YmrlkNotificationPositionEnum.Top,
+  private getConfig = (config: YmrlkNotificationToastConfigInterface | undefined): YmrlkNotificationToastConfigInterface => ({
+    duration: (config && config.duration) || this.notificationConfig.toastConfig.duration || 6000,
+    position: (config && config.position) || this.notificationConfig.toastConfig.position || YmrlkNotificationPositionEnum.Top,
     notificationType: (config && config.notificationType) ||
-      this._notificationConfig.toastConfig.notificationType ||
+      this.notificationConfig.toastConfig.notificationType ||
       YmrlkNotificationTypeEnum.Info,
-    icon: (config && config.icon) || this._notificationConfig.toastConfig.icon || null,
-    closeButton: (config && config.closeButton) || this._notificationConfig.toastConfig.closeButton || null,
-    actionButton: (config && config.actionButton) || this._notificationConfig.toastConfig.actionButton || null,
-    keepOnHover: (config && config.keepOnHover) || this._notificationConfig.toastConfig.keepOnHover || false,
-    maxStackSize: (config && config.maxStackSize) || this._notificationConfig.maxStackSize || Infinity,
-    hideOnClick: (config && config.hideOnClick) || this._notificationConfig.toastConfig.hideOnClick || false,
+    icon: (config && config.icon) || this.notificationConfig.toastConfig.icon || null,
+    closeButton: (config && config.closeButton) || this.notificationConfig.toastConfig.closeButton || null,
+    actionButton: (config && config.actionButton) || this.notificationConfig.toastConfig.actionButton || null,
+    keepOnHover: (config && config.keepOnHover) || this.notificationConfig.toastConfig.keepOnHover || false,
+    maxStackSize: (config && config.maxStackSize) || this.notificationConfig.maxStackSize || Infinity,
+    hideOnClick: (config && config.hideOnClick) || this.notificationConfig.toastConfig.hideOnClick || false,
   })
 }

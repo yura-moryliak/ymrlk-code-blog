@@ -1,4 +1,4 @@
-.ecc-notification-group {
+.ymrlk-notification-group {
   display: flex;
   position: fixed;
   z-index: 999;
@@ -7,45 +7,45 @@
   overflow: hidden;
 }
 
-.ecc-notifications-group-top {
+.ymrlk-notifications-group-top {
   top: 0;
   left: 50%;
   flex-direction: column;
   transform: translateX(-50%);
 }
 
-.ecc-notifications-group-top-left {
+.ymrlk-notifications-group-top-left {
   top: 0;
   left: 0;
   flex-direction: column;
 }
 
-.ecc-notifications-group-top-right {
+.ymrlk-notifications-group-top-right {
   top: 0;
   right: 0;
   flex-direction: column;
 }
 
-.ecc-notifications-group-bottom {
+.ymrlk-notifications-group-bottom {
   bottom: 0;
   left: 50%;
   transform: translateX(-50%);
   flex-direction: column-reverse;
 }
 
-.ecc-notifications-group-bottom-left {
+.ymrlk-notifications-group-bottom-left {
   bottom: 0;
   left: 0;
   flex-direction: column-reverse;
 }
 
-.ecc-notifications-group-bottom-right {
+.ymrlk-notifications-group-bottom-right {
   bottom: 0;
   right: 0;
   flex-direction: column-reverse;
 }
 
-.ecc-notifications-group-center {
+.ymrlk-notifications-group-center {
   top: 50%;
   left: 50%;
   flex-direction: column;

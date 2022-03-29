@@ -2,7 +2,7 @@ import {ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {YmrlkNotificationModalComponent} from './ymrlk-notification-modal.component';
 
-describe('NotificationModalComponent', () => {
+describe('YmrlkNotificationModalComponent', () => {
   let component: YmrlkNotificationModalComponent;
   let fixture: ComponentFixture<YmrlkNotificationModalComponent>;
 

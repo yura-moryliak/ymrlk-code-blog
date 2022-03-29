@@ -1,6 +1,6 @@
-<div class="ecc-notification-modal-content" [ngClass]="modalNotification.content.panelClass">
+<div class="ymrlk-notification-modal-content" [ngClass]="modalNotification.content.panelClass">
 
-    <h3 class="ecc-notification-modal-title">{{ modalNotification.content.title }}</h3>
+    <h3 class="ymrlk-notification-modal-title">{{ modalNotification.content.title }}</h3>
     <p>{{ modalNotification.content.text }}</p>
 
     <ng-container *ngIf="modalNotification.content.template">
@@ -8,18 +8,17 @@
     </ng-container>
 
     <ng-container *ngIf="!modalNotification.content.template">
-        <div class="ecc-close" *ngIf="modalNotification.config.closeButton">
-            <img src="./assets/ecc-icons/close.svg" alt="close" class="ecc-close-image gkh-close-image-delete-user"
-                 (click)="dismiss()">
+        <div class="ymrlk-close" *ngIf="modalNotification.config.closeButton">
+            <!--TODO SET SVG HERE-->
         </div>
 
-        <div class="ecc-buttons-wrapper" [class.single-button]="!modalNotification.config.closeButton">
+        <div class="ymrlk-buttons-wrapper" [class.single-button]="!modalNotification.config.closeButton">
 
-            <button class="ecc-button ecc-button-dismiss" *ngIf="modalNotification.config.closeButton" (click)="dismiss()">
-                {{ modalNotification.content.closeButtonText || 'Abbrechen' }}
+            <button class="ymrlk-button ymrlk-button-dismiss" *ngIf="modalNotification.config.closeButton" (click)="dismiss()">
+                {{ modalNotification.content.closeButtonText || 'Cancel' }}
             </button>
 
-            <button class="ecc-button ecc-button-close" (click)="confirm()">
+            <button class="ymrlk-button ymrlk-button-close" (click)="confirm()">
                 {{ modalNotification.content.confirmButtonText || 'Ok' }}
             </button>
         </div>
@@ -27,4 +26,4 @@
 
 </div>
 
-<div class="ecc-notification-modal-backdrop" (click)="backdropDismiss()"></div>
+<div class="ymrlk-notification-modal-backdrop" (click)="backdropDismiss()"></div>

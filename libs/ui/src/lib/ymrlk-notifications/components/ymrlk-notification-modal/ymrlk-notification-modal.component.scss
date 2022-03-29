@@ -1,4 +1,4 @@
-ecc-notification-modal {
+ymrlk-notification-modal {
   top: 0;
   left: 0;
   width: 100%;
@@ -11,7 +11,7 @@ ecc-notification-modal {
   align-items: center;
 }
 
-.ecc-notification-modal-content {
+.ymrlk-notification-modal-content {
   position: relative;
   z-index: 1000;
   font-family: sans-serif;
@@ -28,25 +28,25 @@ ecc-notification-modal {
   }
 }
 
-.ecc-notification-modal-title {
+.ymrlk-notification-modal-title {
   margin-bottom: 10px;
   text-align: center;
 }
 
-.ecc-close {
+.ymrlk-close {
   position: absolute;
   right: 10px;
   top: 10px;
 }
 
-.ecc-close-image {
+.ymrlk-close-image {
   width: 14px;
   height: 14px;
   display: flex;
   cursor: pointer;
 }
 
-.ecc-buttons-wrapper {
+.ymrlk-buttons-wrapper {
   width: 100%;
   display: flex;
   flex-direction: row;
@@ -58,7 +58,7 @@ ecc-notification-modal {
   }
 }
 
-.ecc-button {
+.ymrlk-button {
   outline: none;
   border: none;
   color: #ffffff;
@@ -76,7 +76,7 @@ ecc-notification-modal {
   height: 30px;
 }
 
-.ecc-button-close {
+.ymrlk-button-close {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -86,20 +86,20 @@ ecc-notification-modal {
   background: linear-gradient(158.22deg, #95C124 0%, #E6DF00 100%);
 }
 
-.ecc-button-close:hover {
+.ymrlk-button-close:hover {
   background-color: darken(#95C124, 5%);
 }
 
-.ecc-button-dismiss {
+.ymrlk-button-dismiss {
   color: #95C124;
   background: transparent;
 }
 
-.ecc-button-dismiss:hover {
+.ymrlk-button-dismiss:hover {
   opacity: 0.9;
 }
 
-.ecc-notification-modal-backdrop {
+.ymrlk-notification-modal-backdrop {
   top: 0;
   left: 0;
   width: 100%;
